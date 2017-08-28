@@ -299,3 +299,4 @@ set clipboard=unnamedplus
 " it should search through parent dirs until it finds a tags file
 set autochdir
 set tags=tags;
+set relativenumber
