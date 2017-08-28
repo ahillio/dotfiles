@@ -291,6 +291,8 @@ let g:vdebug_options['server'] = ""
 " END DEBUG "
 
 " Use system clipboard
+" @todo: Using the system keyboard should only be done for yank
+" but instead this is global, so deleted characters copy to system clipboard :(
 set clipboard=unnamedplus
 
 " autochdir useful for tags=tags
