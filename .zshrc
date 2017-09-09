@@ -136,3 +136,4 @@ alias drush8='~/.drush8/vendor/drush/drush/drush'
 # end of cursor mode function
 
 alias lsd='ll | grep -e "^d"'
+alias ltr='ls -ltr'
