@@ -1,0 +1,13 @@
+[push]
+  default = simple
+[user]
+  email = "web@ahill.io"
+  name = "Alec Hill"
+[merge "ours"]
+  driver = true
+[alias]
+  unstage = reset HEAD --
+  untrack = update-index --assume-unchanged
+  merge-to = "!gitmergeto() { export tmp_branch=`git branch | grep '* ' | tr -d '* '` && git checkout $1 && git merge $tmp_branch && git checkout $tmp_branch; unset tmp_branch; }; gitmergeto"
+  vlog = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
+  #vlog = log --graph --date-order -C -M --pretty=format:\"<%h> %Cgreen%d%Creset %s\" --all --date=short
