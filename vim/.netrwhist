@@ -1,0 +1,4 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_1='/home/alec/www/lgk/docroot/sites/all/modules/custom/drudesk_main'
+let g:netrw_dirhist_2='/home/alec/www/lgk/docroot/sites/all/modules/custom/drudesk_main/js'
