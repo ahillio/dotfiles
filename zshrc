@@ -82,11 +82,61 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
+
+# z utility, track cd destinations for easy moving
+. ~/bin/z/z.sh
+
+# replace standard `mv` command
+# check if destination exists, if not then create it
+# sadly doesn't work :(
+# function mv ()
+# {
+# 	dir="$2"
+# 	tmp="$2"; tmp="${tmp: -1}"
+# 	[ "$tmp" != "/" ] && dir="$(dirname "$2")"
+# 	[ -a "$dir" ] ||
+# 		mkdir -p "$dir" &&
+# 		mv "$@"
+# }
+
+source ~/dotfiles/tmuxinator.zsh
+
+# if [ -f ~/.drush/drush.zshrc ] ; then
+#     . ~/.drush/drush.zshrc
+# fi
+
+
+# Change cursor to represent command/insert modes
+# https://emily.st/2013/05/03/zsh-vi-cursor/
+# though she comments-out that section here:
+# https://github.com/emilyst/home/blob/master/.zshrc
+# function zle-keymap-select zle-line-init
+# {
+#     # change cursor shape in iTerm2
+#     case $KEYMAP in
+#         vicmd)      print -n -- "\E]50;CursorShape=0\C-G";;  # block cursor
+#         viins|main) print -n -- "\E]50;CursorShape=1\C-G";;  # line cursor
+#     esac
+# 
+#     zle reset-prompt
+#     zle -R
+# }
+# 
+# function zle-line-finish
+# {
+#     print -n -- "\E]50;CursorShape=0\C-G"  # block cursor
+# }
+# 
+# zle -N zle-line-init
+# zle -N zle-line-finish
+# zle -N zle-keymap-select
+# end of cursor mode function
+
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
 
 function cdl { cd "$@" && ls -1 }
 
@@ -145,52 +195,6 @@ alias showz='watch -n 1 -c "$1"'
 # example:
 # showz drush sqlq "select item_id,status,data from advancedqueue where name='gifted_member_welcome' order by item_id desc limit 5"
 
-# z utility, track cd destinations for easy moving
-. ~/bin/z/z.sh
-
-# replace standard `mv` command
-# check if destination exists, if not then create it
-# sadly doesn't work :(
-# function mv ()
-# {
-# 	dir="$2"
-# 	tmp="$2"; tmp="${tmp: -1}"
-# 	[ "$tmp" != "/" ] && dir="$(dirname "$2")"
-# 	[ -a "$dir" ] ||
-# 		mkdir -p "$dir" &&
-# 		mv "$@"
-# }
-
-source ~/dotfiles/tmuxinator.zsh
-
-# if [ -f ~/.drush/drush.zshrc ] ; then
-#     . ~/.drush/drush.zshrc
-# fi
-
-
-# Change cursor to represent command/insert modes
-# https://emily.st/2013/05/03/zsh-vi-cursor/
-# though she comments-out that section here:
-# https://github.com/emilyst/home/blob/master/.zshrc
-# function zle-keymap-select zle-line-init
-# {
-#     # change cursor shape in iTerm2
-#     case $KEYMAP in
-#         vicmd)      print -n -- "\E]50;CursorShape=0\C-G";;  # block cursor
-#         viins|main) print -n -- "\E]50;CursorShape=1\C-G";;  # line cursor
-#     esac
-# 
-#     zle reset-prompt
-#     zle -R
-# }
-# 
-# function zle-line-finish
-# {
-#     print -n -- "\E]50;CursorShape=0\C-G"  # block cursor
-# }
-# 
-# zle -N zle-line-init
-# zle -N zle-line-finish
-# zle -N zle-keymap-select
-# end of cursor mode function
-
+alias t='vit'
+alias tim='timew'
+alias timlog='timew summary 2020-01-01 - tomorrow'
