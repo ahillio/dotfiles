@@ -84,7 +84,8 @@ source $ZSH/oh-my-zsh.sh
 
 
 # z utility, track cd destinations for easy moving
-. ~/bin/z/z.sh
+# @TODO install Z
+# . ~/bin/z/z.sh
 
 # replace standard `mv` command
 # check if destination exists, if not then create it
@@ -99,7 +100,7 @@ source $ZSH/oh-my-zsh.sh
 # 		mv "$@"
 # }
 
-source ~/dotfiles/tmuxinator.zsh
+source ~/.dotfiles/tmuxinator.zsh
 
 # if [ -f ~/.drush/drush.zshrc ] ; then
 #     . ~/.drush/drush.zshrc
@@ -140,6 +141,8 @@ source ~/dotfiles/tmuxinator.zsh
 
 function cdl { cd "$@" && ls -1 }
 
+alias taskrc='vi ~/.taskrc'
+alias vitrc='vi ~/.vit/config.ini'
 alias vimrc='vi ~/.vimrc'
 alias zshrc='vi ~/.zshrc && source ~/.zshrc'
 alias hello='echo "and good day"'
