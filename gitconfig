@@ -1,8 +1,8 @@
 [push]
   default = simple
 [user]
-  email = "web@ahill.io"
-  name = "Alec Hill"
+	email = web@ahill.io
+	name = Alec Hill
 [merge "ours"]
   driver = true
 [alias]

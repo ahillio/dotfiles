@@ -104,7 +104,10 @@ endif
 
 set cursorline
 
-set nowrap
+" set nowrap
+set wrap linebreak
+set breakindent
+let &showbreak='  '
 
 set nobackup
 set nowritebackup
@@ -314,3 +317,41 @@ let &printexpr="(v:cmdarg=='' ? ".
     \". ' ' . v:fname_in) . delete(v:fname_in) + v:shell_error".
     \" : system('mv '.v:fname_in.' '.v:cmdarg) + v:shell_error)"
 
+" Use Ctrl+s to save
+" note this requires shell configuration/compatibility,
+" sometimes with terminal emulator, in my case in zshrc.
+" works for 'insert' mode
+inoremap <c-s> <Esc>:w<CR>
+" works for 'normal' mode
+nnoremap <c-s> :w<CR>
+
+" for javascript coloring:
+let g:javascript_plugin_jsdoc = 1
+
+" " automatically make shell scripts executable
+" au BufWritePost * if getline(1) =~ "^#! */bin/[a-z]*sh" | silent !chmod a+x <afile>
+" au BufWritePost * | endif
+" " is `au` short for `autocmd`?
+" " why does that take 2 lines?  and why isn't `endif` on the first line?
+
+
+" functions for strikethrough
+" modify selected text using combining diacritics
+command! -range -nargs=0 Overline        call s:CombineSelection(<line1>, <line2>, '0305')
+command! -range -nargs=0 Underline       call s:CombineSelection(<line1>, <line2>, '0332')
+command! -range -nargs=0 DoubleUnderline call s:CombineSelection(<line1>, <line2>, '0333')
+command! -range -nargs=0 Strikethrough   call s:CombineSelection(<line1>, <line2>, '0336')
+
+function! s:CombineSelection(line1, line2, cp)
+  execute 'let char = "\u'.a:cp.'"'
+  execute a:line1.','.a:line2.'s/\%V[^[:cntrl:]]/&'.char.'/ge'
+endfunction
+" /end functions for strikethrough
+
+" fade colors for ~~
+au BufRead,BufNewFile *.txt   syntax match StrikeoutMatch /\~\~.*$/   
+"au BufRead,BufNewFile *.txt   syntax match StrikeoutMatch /\~\~.*\~\~/   
+hi def  StrikeoutColor   ctermbg=234 ctermfg=238    guibg=#242424 guifg=darkgray
+" for colors see https://vim.fandom.com/wiki/Xterm256_color_names_for_console_Vim
+hi link StrikeoutMatch StrikeoutColor
+" /end fade colors for ~~
