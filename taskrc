@@ -23,6 +23,11 @@ default.command=ready
 report.ready.columns=id,start.active,depends.indicator,project,due.relative,description.count
 report.ready.labels= ,,Depends, Project, Due, Description
 
+# `task show report.list` shows report config
+report.list.columns=id,start.age,depends.indicator,priority,project,tags,recur.indicator,scheduled.countdown,due,until.remaining,description.count,urgency
+report.list.labels=ID,Active,D,P,Project,Tags,R,Sch,Due,Until,Description,Urg
+
+
 # Color theme (uncomment one to use)
 #include /usr/share/taskwarrior/light-16.theme
 #include /usr/share/taskwarrior/light-256.theme
