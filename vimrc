@@ -349,7 +349,7 @@ endfunction
 " /end functions for strikethrough
 
 " fade colors for ~~
-au BufRead,BufNewFile *.txt   syntax match StrikeoutMatch /\~\~.*$/   
+au BufRead,BufNewFile *.txt,*.mkd   syntax match StrikeoutMatch /\~\~.*$/   
 "au BufRead,BufNewFile *.txt   syntax match StrikeoutMatch /\~\~.*\~\~/   
 hi def  StrikeoutColor   ctermbg=234 ctermfg=238    guibg=#242424 guifg=darkgray
 " for colors see https://vim.fandom.com/wiki/Xterm256_color_names_for_console_Vim
@@ -357,4 +357,4 @@ hi link StrikeoutMatch StrikeoutColor
 " /end fade colors for ~~
 
 "taskw files:
-autocmd BufRead,BufNewFile *.task set nofoldenable
+autocmd BufRead,BufNewFile *.task,*.mkd,*.txt set nofoldenable

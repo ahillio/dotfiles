@@ -51,7 +51,7 @@ plugins=(git vi-mode history-substring-search tmuxinator)
 # User configuration
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/alec/.shellscripts:/home/alec/bin"
-export PATH="$HOME/.composer/vendor/bin:$PATH"
+export PATH="$HOME/.composer/vendor/bin:/home/alec/.local/bin:$PATH"
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -199,5 +199,6 @@ alias showz='watch -n 1 -c "$1"'
 # showz drush sqlq "select item_id,status,data from advancedqueue where name='gifted_member_welcome' order by item_id desc limit 5"
 
 alias t='vit'
-alias tim='timew'
+alias tim='timew summary :id'
 alias timlog='timew summary 2020-01-01 - tomorrow'
+alias tnt='tasknote'

@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/home/alec/www/lgk/docroot/sites/all/modules/custom/drudesk_main'
 let g:netrw_dirhist_2='/home/alec/www/lgk/docroot/sites/all/modules/custom/drudesk_main/js'
 let g:netrw_dirhist_3='/home/alec/Work/ahillio_labs/computer_programming_curriculums/cli_learning_environment/demo-course/lessons'
@@ -8,3 +8,4 @@ let g:netrw_dirhist_5='/etc/resolvconf/resolv.conf.d'
 let g:netrw_dirhist_6='/home/alec/Work/ahillio_labs/computer_programming_curriculums/cli_learning_environment/demo-course/lessons/1_variables_functions'
 let g:netrw_dirhist_7='/home/alec/Work/ahillio_labs/computer_programming_curriculums/cli_learning_environment/demo-course/lessons/2_logic_and_flow_control'
 let g:netrw_dirhist_8='/home/alec/www/rootsvt/bin'
+let g:netrw_dirhist_9='/home/alec/.local/bin'
