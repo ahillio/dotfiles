@@ -205,3 +205,4 @@ alias timlog='timew summary 2020-01-01 - tomorrow'
 alias tnt='tasknote'
 
 alias dot='cd ~/.dotfiles && ls'
+alias bin='cd ~/bin && ls'
