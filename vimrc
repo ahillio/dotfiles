@@ -66,23 +66,30 @@ if has("autocmd")
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
   au!
-
-  " For all text files set 'textwidth' to 78 characters.
-  " I think that sucks.  Not sure where I got it from.
-  " Let's comment it out.
-  " autocmd FileType text setlocal textwidth=78
-
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  " Also don't do it when the mark is in the first line, that is the default
-  " position when opening a file.
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
-
+		" When editing a file, always jump to the last known cursor position.
+		" Don't do it when the position is invalid or when inside an event handler
+		" (happens when dropping a file on gvim).
+		" Also don't do it when the mark is in the first line, that is the default
+		" position when opening a file.
+		autocmd BufReadPost *
+			\ if line("'\"") > 1 && line("'\"") <= line("$") |
+			\   exe "normal! g`\"" |
+			\ endif
   augroup END
+
+	augroup templates
+    autocmd BufNewFile *.sh 0r ~/.vim/templates/template.sh
+    autocmd BufNewFile ecotech_*.mkd 0r ~/.vim/templates/template_ecotech.mkd
+    autocmd BufNewFile ~/Documents/wiki/diary/*.mkd :silent 0r !vimwiki-diary-template.py
+  augroup END  
+  " VimWiki Diary
+  command! Diary VimwikiDiaryIndex
+  augroup vimwikigroup
+    autocmd!
+    " automatically update links on read diary
+    autocmd BufRead,BufNewFile diary.wiki VimwikiDiaryGenerateLinks
+  augroup end
+  " End Vimiki Diary
 
 else
 
@@ -358,3 +365,38 @@ hi link StrikeoutMatch StrikeoutColor
 
 "taskw files:
 autocmd BufRead,BufNewFile *.task,*.mkd,*.txt set nofoldenable
+
+"let wiki_1 = {}
+"let wiki_1.path = '~/Work/ahillio_labs/human-ecology/'
+"let wiki_1.syntax = 'markdown'
+"let wiki_1.ext = '.mkd'
+"let wiki_1.nested_syntaxes = {'ruby': 'ruby', 'python': 'python', 'c++': 'cpp', 'sh': 'sh', 'php': 'php', 'javascript': 'js'}
+"
+"let wiki_2 = {}
+"let wiki_2.path = '~/Work/ahillio_labs/tech-wiki/'
+"let wiki_2.syntax = 'markdown'
+"let wiki_2.ext = '.mkd'
+"let wiki_2.nested_syntaxes = {'ruby': 'ruby', 'python': 'python', 'c++': 'cpp', 'sh': 'sh', 'php': 'php', 'javascript': 'js'}
+"
+"let wiki_3 = {}
+"let wiki_3.path = '~/Documents/wiki'
+"let wiki_3.syntax = 'markdown'
+"let wiki_3.ext = '.mkd'
+"let wiki_3.nested_syntaxes = {'ruby': 'ruby', 'python': 'python', 'c++': 'cpp', 'sh': 'sh', 'php': 'php', 'javascript': 'js'}
+"
+"let g:vimwiki_list = [wiki_1, wiki_2, wiki_3]
+
+let g:vimwiki_list = [{'path': '~/Documents/wiki/', 'syntax': 'markdown', 'ext': '.mkd'},
+                     \ {'path': '~/Work/ahillio_labs/tech-wiki/', 'syntax': 'markdown', 'ext': '.mkd'},
+                     \ {'path': '~/Work/ahillio_labs/human-ecology/', 'syntax': 'markdown', 'ext': '.mkd'}]
+
+:call vimwiki#vars#init()
+
+" is this what breaks syntax?
+" let g:vimwiki_ext2syntax = {'.mkd': 'markdown', '.md': 'markdown', '.mdown': 'markdown', '.markdown': 'markdown'}
+
+" `wiki` is undefined variable.  Should I simply define variable named 'wiki'
+" or should `.nested_sentaxes` be applied to `wiki_list`?
+" let wiki.nested_syntaxes = {'ruby': 'ruby', 'python': 'python', 'c++': 'cpp', 'sh': 'sh', 'php': 'php', 'javascript': 'js'}
+
+

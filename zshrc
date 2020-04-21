@@ -133,6 +133,9 @@ source ~/.dotfiles/tmuxinator.zsh
 # zle -N zle-keymap-select
 # end of cursor mode function
 
+# Ctrl+s freezes terminal (requiring Ctrl+q to un-freeze)
+# so disable the terminal scroll lock setting:
+stty -ixon
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -173,7 +176,7 @@ alias restart='echo "lOv13!" | sudo -S shutdown -r now'
 alias ww='cd ~/www && l'
 
 alias ld='ls -1 -d */. | sed "s|/\.||g"'
-alias lsd='ls -1 -d */. | sed "s|/\.||g"'
+#alias lsd='ls -1 -d */. | sed "s|/\.||g"'
 #alias lsd='ll | grep -e "^d" | grep -v " \."'
 #alias lsd='ll | grep -e "^d" | grep -v " \." | cut -c50-'
 #alias lsd='ll | grep -e "^d" | grep -v " \." | sed "s|^.*(\s\d{2}:\d{2}\s)||g"'

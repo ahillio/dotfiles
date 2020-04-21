@@ -1,0 +1,24 @@
+# Tech
+# ====
+
+**Description:**
+  statement of use and advantage goes here
+
+**How it Works:**
+  technically how does this thing operate?
+
+**Status:**
+  proven/tested/needswork
+
+**Ecological Principles:**
+  - 
+
+**Areas of Need:**
+  - 
+
+**Related Tech:**
+  - [example](ecotech_example.mkd)
+  - 
+
+**Images:**
+  - [[file:/]]
