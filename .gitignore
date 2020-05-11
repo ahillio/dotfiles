@@ -1,3 +1,4 @@
 *~
 *.swp
 drush/cache
+remote-servers
