@@ -38,6 +38,10 @@ map <Leader>i mmgg=G`m<CR>
 map <Leader>s :<C-U>echo 'Hello World'<CR>
 "map <Leader>t :NERDTree<CR>
 
+" copy file path to clipboard
+map <Leader>fp :let @+ = expand("%")<cr>
+"map <Leader>fp :let @" = expand("%")<cr>
+
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
