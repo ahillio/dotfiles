@@ -71,6 +71,7 @@ if has("autocmd")
 		" (happens when dropping a file on gvim).
 		" Also don't do it when the mark is in the first line, that is the default
 		" position when opening a file.
+    " @TODO new vimwiki diary pages have cursor at the end which is annoying
 		autocmd BufReadPost *
 			\ if line("'\"") > 1 && line("'\"") <= line("$") |
 			\   exe "normal! g`\"" |
@@ -87,9 +88,24 @@ if has("autocmd")
   augroup vimwikigroup
     autocmd!
     " automatically update links on read diary
-    autocmd BufRead,BufNewFile diary.wiki VimwikiDiaryGenerateLinks
+    autocmd BufRead,BufNewFile diary.mkd VimwikiDiaryGenerateLinks
   augroup end
   " End Vimiki Diary
+
+  function GotoTaskLine()
+    normal 23G22|
+    normal zt
+  endfunction
+  "autocmd BufRead,BufNewFile *.task call GotoTaskLine()
+  "autocmd BufRead,BufNewFile task.*.task normal zt
+	augroup SkipTaskComments
+    autocmd BufEnter,BufRead task.*.task
+      \ normal 23G22|zt
+	" https://vi.stackexchange.com/questions/24736/how-to-redraw-screen-with-cursor-at-top-like-zt-from-autocommand?noredirect=1#comment43520_24736
+"	autocmd BufEnter,BufRead task*.*task
+"			\ normal 23gg22|zt
+"       "works the same as \ normal 23G22|zt
+	augroup end
 
 else
 
@@ -120,11 +136,12 @@ set nobackup
 set nowritebackup
 
 " plugins wtf:
-set nocompatible
-call pathogen#infect('/root/.drush/vimrc/bundle/{}')
-call pathogen#infect('/usr/share/vim/vim74/bundle/{}')
+" we don't need this 
+" set nocompatible
+" call pathogen#infect('/root/.drush/vimrc/bundle/{}')
+" call pathogen#infect('/usr/share/vim/vim74/bundle/{}')
+
 filetype plugin on
-" it worked! but why not before? it's already in /usr/share/vim/vimrc..?
 
 let php_htmlInStrings = 1
 
@@ -318,6 +335,8 @@ set tags=tags;
 set relativenumber
 set number
 
+set smartcase
+
 " enable printing to postscript or something
 let &printexpr="(v:cmdarg=='' ? ".
     \"system('lpr' . (&printdevice == '' ? '' : ' -P' . &printdevice)".
@@ -363,7 +382,7 @@ hi def  StrikeoutColor   ctermbg=234 ctermfg=238    guibg=#242424 guifg=darkgray
 hi link StrikeoutMatch StrikeoutColor
 " /end fade colors for ~~
 
-"taskw files:
+"disable folds:
 autocmd BufRead,BufNewFile *.task,*.mkd,*.txt set nofoldenable
 
 "let wiki_1 = {}
@@ -393,10 +412,12 @@ let g:vimwiki_list = [{'path': '~/Documents/wiki/', 'syntax': 'markdown', 'ext':
 :call vimwiki#vars#init()
 
 " is this what breaks syntax?
-" let g:vimwiki_ext2syntax = {'.mkd': 'markdown', '.md': 'markdown', '.mdown': 'markdown', '.markdown': 'markdown'}
+let g:vimwiki_ext2syntax = {'.mkd': 'markdown', '.md': 'markdown', '.mdown': 'markdown', '.markdown': 'markdown'}
 
 " `wiki` is undefined variable.  Should I simply define variable named 'wiki'
 " or should `.nested_sentaxes` be applied to `wiki_list`?
-" let wiki.nested_syntaxes = {'ruby': 'ruby', 'python': 'python', 'c++': 'cpp', 'sh': 'sh', 'php': 'php', 'javascript': 'js'}
+let wiki = {}
+let wiki.nested_syntaxes = {'ruby': 'ruby', 'python': 'python', 'c++': 'cpp', 'sh': 'sh', 'php': 'php', 'javascript': 'js'}
+let g:vimwiki_hl_headers = 1
 
 
