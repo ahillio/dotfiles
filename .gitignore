@@ -2,3 +2,4 @@
 *.swp
 drush/cache
 remote-servers
+vim/view
