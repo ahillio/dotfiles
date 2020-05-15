@@ -124,7 +124,7 @@ set show-notes			= yes		# When non-bool passed as `--show-notes=...` (diff)
 set start-on-head		= no		# Start with cursor on HEAD commit
 set refresh-mode		= auto		# Enum: manual, auto, after-command, periodic
 set refresh-interval		= 10		# Interval in seconds between refreshes
-set ignore-case			= no		# Enum: no, yes, smart-case
+set ignore-case			= yes		# Enum: no, yes, smart-case
 						# Ignore case when searching? Smart-case option will
 set wrap-search			= yes		# Wrap around to top/bottom of view when searching
 set focus-child			= yes		# Move focus to child view when opened?
@@ -137,9 +137,9 @@ set split-view-width		= 50%		# Width of right-most view for vertical splits
 set editor-line-number		= yes		# Automatically pass line number to editor? Used
 						# for opening file at specific line e.g. from a diff
 set history-size		= 500		# Size of persistent history, 0 to disable
-set mouse			= no		# Enable mouse support?
+set mouse			= yes		# Enable mouse support?
 set mouse-scroll		= 3		# Number of lines to scroll via the mouse
-set mouse-wheel-cursor		= no		# Prefer moving the cursor to scrolling the view?
+set mouse-wheel-cursor		= yes		# Prefer moving the cursor to scrolling the view?
 set pgrp			= no		# Make tig process-group leader
 
 # User-defined commands
@@ -188,6 +188,7 @@ bind refs	C	?git checkout %(branch)
 bind refs	!	?git branch -D %(branch)
 bind reflog	C	?git checkout %(branch)
 bind reflog	!	?git reset --hard %(commit)
+# @TODO copy commit id to clipboard (why? I don't recall...)
 
 # Normal commands
 # ---------------

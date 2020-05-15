@@ -40,6 +40,7 @@ map <Leader>s :<C-U>echo 'Hello World'<CR>
 
 " copy file path to clipboard
 map <Leader>fp :let @+ = expand("%")<cr>
+map <Leader>yf :let @+ = expand("%")<cr>
 "map <Leader>fp :let @" = expand("%")<cr>
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,

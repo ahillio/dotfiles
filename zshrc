@@ -145,10 +145,10 @@ stty -ixon
 function cdl { cd "$@" && ls -1 }
 
 alias taskrc='vi ~/.taskrc'
+alias tigrc='vi ~/.tigrc'
 alias vitrc='vi ~/.vit/config.ini'
 alias vimrc='vi ~/.vimrc'
 alias zshrc='vi ~/.zshrc && source ~/.zshrc'
-alias hello='echo "and good day"'
 
 alias xclip='xclip -sel clip'
 
@@ -195,6 +195,7 @@ alias killmux='tmux kill-session -t'
 alias dmux='tmux kill-session -t'
 alias delmux='tmux kill-session -t'
 alias muxa='tmux a -t'
+alias mx='tmux a -t 1'
 alias lmx='tmux ls'
 
 alias repl='psysh'
@@ -209,3 +210,7 @@ alias tnt='tasknote'
 
 alias dot='cd ~/.dotfiles && ls'
 alias bin='cd ~/bin && ls'
+
+alias vw='vi ~/Documents/wiki/index.mkd'
+alias wki='vi ~/Documents/wiki/index.mkd'
+alias wiki='vi ~/Documents/wiki/index.mkd'
