@@ -195,6 +195,8 @@ alias killmux='tmux kill-session -t'
 alias dmux='tmux kill-session -t'
 alias delmux='tmux kill-session -t'
 alias muxa='tmux a -t'
+alias mxo='tmux a -t 0'
+alias mx0='tmux a -t 0'
 alias mx='tmux a -t 1'
 alias lmx='tmux ls'
 
@@ -203,8 +205,12 @@ alias showz='watch -n 1 -c "$1"'
 # example:
 # showz drush sqlq "select item_id,status,data from advancedqueue where name='gifted_member_welcome' order by item_id desc limit 5"
 
+function calc { echo "scale=2; $@" | bc  }
+#alias calc="echo 'scale=2' | bc"
+
 alias t='vit'
 alias tim='timew summary :id'
+alias showtime="sho 'timew summary :id'"
 alias timlog='timew summary 2020-01-01 - tomorrow'
 alias tnt='tasknote'
 
