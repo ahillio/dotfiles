@@ -426,3 +426,10 @@ let wiki.nested_syntaxes = {'ruby': 'ruby', 'python': 'python', 'c++': 'cpp', 's
 let g:vimwiki_hl_headers = 1
 
 
+
+
+" ledger bookkeeping config:
+let g:ledger_maxwidth = 80
+let g:ledger_fillstring = '    -'
+let g:ledger_detailed_first = 1
+let g:ledger_fold_blanks = 0
