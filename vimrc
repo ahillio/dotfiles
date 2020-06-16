@@ -442,6 +442,9 @@ endfun
 command! ListToggleCheckBox :call ListToggleCheckBox()
 nnoremap <leader>x :ListToggleCheckBox<CR> 
 
+"map CTRL-E to end-of-line (insert mode)
+imap <C-e> <esc>$a 
+
 
 " ledger bookkeeping config:
 let g:ledger_maxwidth = 80
