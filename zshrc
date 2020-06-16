@@ -191,6 +191,10 @@ alias l='ls -1'
 
 alias o='xdg-open'
 
+alias sedall="find ./ -type f -exec sed -i 's|$1|g' {} \;"
+# sed through all files in current directory
+# use like: `sedall find|replace`
+
 alias killmux='tmux kill-session -t'
 alias dmux='tmux kill-session -t'
 alias delmux='tmux kill-session -t'
