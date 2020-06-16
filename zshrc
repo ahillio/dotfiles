@@ -220,3 +220,16 @@ alias bin='cd ~/bin && ls'
 alias vw='vi ~/Documents/wiki/index.mkd'
 alias wki='vi ~/Documents/wiki/index.mkd'
 alias wiki='vi ~/Documents/wiki/index.mkd'
+
+#The next lines enables shell command completion for Stripe
+fpath=(~/.stripe $fpath)
+autoload -Uz compinit && compinit -i 
+
+function stripe-invoices { APIKEY=$(cat ~/.passwords/stripe-live-sk); curl https://api.stripe.com/v1/invoices -u $APIKEY: -G | jq -C '.data[] | {invoice_id: .id, client: .customer_name, amount: .total, status: .status} | .amount = "$" + (.amount/100|tostring)' }
+function stripe-balance { APIKEY=$(cat ~/.passwords/stripe-live-sk); stripe balance retrieve --api-key=$APIKEY }
+function stripe-payout { APIKEY=$(cat ~/.passwords/stripe-live-sk); stripe payouts create --amount=$1 --currency=usd --api-key=$APIKEY }
+function stripe-payouts { APIKEY=$(cat ~/.passwords/stripe-live-sk); stripe payouts list --limit=4 --api-key=$APIKEY | jq '.data[] | {dateCreated: .created | strftime("%Y-%m-%d"), status: .status, depositDate: .arrival_date | strftime("%Y-%m-%d"), amount: .amount,} | .amount = "$" + (.amount/100|tostring)' }
+function stripe-logs { APIKEY=$(cat ~/.passwords/stripe-live-sk); stripe logs tail --api-key=$APIKEY }
+# jq filters use "select" as keyword:
+# | select( .<key> | contains("<value>")) 
+# | select( ._id == 611 ) 
