@@ -102,6 +102,7 @@ source $ZSH/oh-my-zsh.sh
 
 source ~/.dotfiles/tmuxinator.zsh
 
+
 # if [ -f ~/.drush/drush.zshrc ] ; then
 #     . ~/.drush/drush.zshrc
 # fi
@@ -154,14 +155,19 @@ alias xclip='xclip -sel clip'
 
 alias c='clear'
 alias cl='clear && ls -1'
+
 alias gc='git commit'
 alias gcm='git commit -m'
 alias gcp='git cherry-pick'
 alias gdc='git diff --cached'
 alias gs='git status'
+alias gl='git vlog'
 alias glg="watch -n 1 -c 'git log --graph --date-order -C -M --pretty=format:\"<%h> %Cgreen%d%Creset %s\" --all --date=short'"
 alias gitit='git init && cp ~/bin/inc/gitignore .gitignore && git add .gitignore && git commit -m "Begin."'
 alias gitfilemode='git config core.filemode false'
+alias ts='tig status'
+alias gst='tig status'
+
 alias groot='cd $(git rev-parse --show-toplevel)'
 alias droot='cd $(git rev-parse --show-toplevel) && cd docroot'
 alias dcc='drush cc all'
@@ -209,8 +215,7 @@ alias showz='watch -n 1 -c "$1"'
 # example:
 # showz drush sqlq "select item_id,status,data from advancedqueue where name='gifted_member_welcome' order by item_id desc limit 5"
 
-function calc { echo "scale=2; $@" | bc  }
-#alias calc="echo 'scale=2' | bc"
+#function calc { echo "scale=2; $@" | bc  }
 
 alias t='vit'
 alias tim='timew summary :id'
@@ -220,7 +225,9 @@ alias tnt='tasknote'
 
 alias dot='cd ~/.dotfiles && ls'
 alias bin='cd ~/bin && ls'
+alias work='cd ~/Work && ls'
 
+alias sysins='vi ~/bin/system-install.sh'
 alias vw='vi ~/Documents/wiki/index.mkd'
 alias wki='vi ~/Documents/wiki/index.mkd'
 alias wiki='vi ~/Documents/wiki/index.mkd'
