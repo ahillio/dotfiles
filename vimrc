@@ -271,9 +271,14 @@ autocmd VimResized * :wincmd =
 " nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
 " nnoremap <leader>= :wincmd =<cr>
 
-" Cursor shape | / [] /  _ based on vim mode
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+" cursor shape | / [] /  _ based on vim mode
+" this works in some other terminal
+" let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+" let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+" for konsole in kde5
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
 
 " Disable YouCompleteMe until I learn how to use it :/
 " let g:loaded_youcompleteme = 1
