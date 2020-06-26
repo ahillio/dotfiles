@@ -260,6 +260,9 @@ nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
 
+" get vim to reload file during tmux pane focus if file has changed
+set autoread
+
 " Balance vim panes when tmux panes are created
 " automatically rebalance windows on vim resize
 autocmd VimResized * :wincmd =
