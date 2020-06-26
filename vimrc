@@ -435,6 +435,7 @@ let g:vimwiki_hl_headers = 1
 
 
 fun! ListToggleCheckBox()
+  " @TODO get and save current cursor position then move to cursor position at end of function
     let rx_bullets = '^\(\s*[-*]\+\s*\)'
     let rx_empty_checkbox = '\(\s*\[ \?\]\+\s*\)'
     let rx_marked_checkbox = '\(\s*\[[Xx]\]\+\s*\)'
@@ -448,7 +449,9 @@ fun! ListToggleCheckBox()
     endif
 endfun
 command! ListToggleCheckBox :call ListToggleCheckBox()
-nnoremap <leader>x :ListToggleCheckBox<CR> 
+nnoremap <leader>x :ListToggleCheckBox<CR>$
+nnoremap <C-x> :ListToggleCheckBox<CR>$
+imap <C-x> <esc>:ListToggleCheckBox<CR>A
 
 "map CTRL-E to end-of-line (insert mode)
 imap <C-e> <esc>$a 
