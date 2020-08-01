@@ -10,6 +10,22 @@
 
 # Use the command 'task show' to see all defaults and overrides
 
+# Color theme (uncomment one to use)
+#include /usr/share/taskwarrior/light-16.theme
+#include /usr/share/taskwarrior/light-256.theme
+#include /usr/share/taskwarrior/dark-16.theme
+#include /usr/share/taskwarrior/dark-256.theme
+#include /usr/share/taskwarrior/dark-red-256.theme
+#include /usr/share/taskwarrior/dark-green-256.theme
+#include /usr/share/taskwarrior/dark-blue-256.theme
+#include /usr/share/taskwarrior/dark-violets-256.theme
+#include /usr/share/taskwarrior/dark-yellow-green.theme
+#include /usr/share/taskwarrior/dark-gray-256.theme
+#include /usr/share/taskwarrior/dark-gray-blue-256.theme
+#include /usr/share/taskwarrior/solarized-dark-256.theme
+#include /usr/share/taskwarrior/solarized-light-256.theme
+#include /usr/share/taskwarrior/no-color.theme
+
 weekstart=monday
 
 search.case.sensitive=no
@@ -27,20 +43,17 @@ report.ready.labels= ,,Depends, Project, Due, Description
 report.list.columns=id,start.age,depends.indicator,priority,project,tags,recur.indicator,scheduled.countdown,due,until.remaining,description.count,urgency
 report.list.labels=ID,Active,D,P,Project,Tags,R,Sch,Due,Until,Description,Urg
 
+urgency.blocking.coefficient=4
+#urgency.uda.priority.L.coefficient=-1.0
+urgency.annotations.coefficient=0
+urgency.tags.coefficient=0
 
-# Color theme (uncomment one to use)
-#include /usr/share/taskwarrior/light-16.theme
-#include /usr/share/taskwarrior/light-256.theme
-#include /usr/share/taskwarrior/dark-16.theme
-#include /usr/share/taskwarrior/dark-256.theme
-#include /usr/share/taskwarrior/dark-red-256.theme
-#include /usr/share/taskwarrior/dark-green-256.theme
-#include /usr/share/taskwarrior/dark-blue-256.theme
-#include /usr/share/taskwarrior/dark-violets-256.theme
-#include /usr/share/taskwarrior/dark-yellow-green.theme
-#include /usr/share/taskwarrior/dark-gray-256.theme
-#include /usr/share/taskwarrior/dark-gray-blue-256.theme
-#include /usr/share/taskwarrior/solarized-dark-256.theme
-#include /usr/share/taskwarrior/solarized-light-256.theme
-#include /usr/share/taskwarrior/no-color.theme
-
+uda.demote.type=string
+uda.demote.label=demote
+uda.demote.values=L,l,M,m,H,h
+urgency.uda.demote.l.coefficient=-10
+urgency.uda.demote.L.coefficient=-10
+urgency.uda.demote.m.coefficient=-15
+urgency.uda.demote.M.coefficient=-15
+urgency.uda.demote.h.coefficient=-20
+urgency.uda.demote.H.coefficient=-20

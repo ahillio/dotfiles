@@ -153,6 +153,9 @@ alias zshrc='vi ~/.zshrc && source ~/.zshrc'
 
 alias xclip='xclip -sel clip'
 
+alias cal='khal'
+alias ical='khal interactive'
+#alias cal='ncal -bM'
 alias c='clear'
 alias cl='clear && ls -1'
 
@@ -160,6 +163,7 @@ alias gc='git commit'
 alias gcm='git commit -m'
 alias gcp='git cherry-pick'
 alias gdc='git diff --cached'
+alias gf='git fetch'
 alias gs='git status'
 alias gl='git vlog'
 alias glg="watch -n 1 -c 'git log --graph --date-order -C -M --pretty=format:\"<%h> %Cgreen%d%Creset %s\" --all --date=short'"
@@ -197,9 +201,17 @@ alias l='ls -1'
 
 alias o='xdg-open'
 
-alias sedall="find ./ -type f -exec sed -i 's|$1|g' {} \;"
+sedall() {
+  [ "$#" = 2 ] || { echo Two arguments needed; return 9; }
+  find . -type f -exec sed -i "s|$1|$2|g" {} \;
+}
 # sed through all files in current directory
-# use like: `sedall find|replace`
+# use like: `sedall find replace`
+
+mkcd() {
+  mkdir $1 && cd $1
+}
+alias flength="find . -maxdepth 1 -type f -exec wc -l {} \; | sort -n | sed 's| ./| |g'"
 
 alias killmux='tmux kill-session -t'
 alias dmux='tmux kill-session -t'
@@ -231,16 +243,47 @@ alias sysins='vi ~/bin/system-install.sh'
 alias vw='vi ~/Documents/wiki/index.mkd'
 alias wki='vi ~/Documents/wiki/index.mkd'
 alias wiki='vi ~/Documents/wiki/index.mkd'
+alias techwiki='vi ~/Work/ahillio_labs/tech-wiki/index.mkd'
+alias twiki='vi ~/Work/ahillio_labs/tech-wiki/index.mkd'
+alias wikitags="grep --color=always -r -e '^:\S*:$' ~/Documents/wiki/*.mkd ~/Documents/wiki/diary/*.mkd | cut -d '/' -f 6,7  "
+
+alias fb='fb-messenger-cli'
 
 #The next lines enables shell command completion for Stripe
 fpath=(~/.stripe $fpath)
 autoload -Uz compinit && compinit -i 
 
+function stripekey { APIKEY=$(cat ~/.passwords/stripe-live-sk); stripe $@ --api-key=$APIKEY }
 function stripe-invoices { APIKEY=$(cat ~/.passwords/stripe-live-sk); curl https://api.stripe.com/v1/invoices -u $APIKEY: -G | jq -C '.data[] | {invoice_id: .id, client: .customer_name, amount: .total, status: .status} | .amount = "$" + (.amount/100|tostring)' }
 function stripe-balance { APIKEY=$(cat ~/.passwords/stripe-live-sk); stripe balance retrieve --api-key=$APIKEY }
 function stripe-payout { APIKEY=$(cat ~/.passwords/stripe-live-sk); stripe payouts create --amount=$1 --currency=usd --api-key=$APIKEY }
 function stripe-payouts { APIKEY=$(cat ~/.passwords/stripe-live-sk); stripe payouts list --limit=4 --api-key=$APIKEY | jq '.data[] | {dateCreated: .created | strftime("%Y-%m-%d"), status: .status, depositDate: .arrival_date | strftime("%Y-%m-%d"), amount: .amount,} | .amount = "$" + (.amount/100|tostring)' }
 function stripe-logs { APIKEY=$(cat ~/.passwords/stripe-live-sk); stripe logs tail --api-key=$APIKEY }
+function stripe-customers { APIKEY=$(cat ~/.passwords/stripe-live-sk); stripe customers list --api-key=$APIKEY | jq -C '.data[] | {id: .id, name: .name}'}
+
 # jq filters use "select" as keyword:
 # | select( .<key> | contains("<value>")) 
 # | select( ._id == 611 ) 
+
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# Change Konsole colorscheme
+# Breeze | SolarizedLight
+bgd() {
+  switch-term-color "colors=Breeze"
+}
+bgl() {
+  switch-term-color "colors=SolarizedLight"
+}
+switch-term-color() {
+  arg="${1:-colors=Tomorrow}"
+  if [[ -z "$TMUX" ]]
+  then
+    konsoleprofile "$arg"
+  else
+    printf '\033Ptmux;\033\033]50;%s\007\033\\' "$arg"
+  fi
+}

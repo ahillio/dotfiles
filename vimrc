@@ -43,6 +43,9 @@ map <Leader>fp :let @+ = expand("%")<cr>
 map <Leader>yf :let @+ = expand("%")<cr>
 "map <Leader>fp :let @" = expand("%")<cr>
 
+map <Leader>bgl :set background=light <Enter>
+map <Leader>bgd :set background=dark <Enter>
+
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
@@ -348,6 +351,7 @@ set tags=tags;
 set relativenumber
 set number
 
+set ignorecase
 set smartcase
 
 " enable printing to postscript or something
@@ -454,11 +458,45 @@ nnoremap <C-x> :ListToggleCheckBox<CR>$
 imap <C-x> <esc>:ListToggleCheckBox<CR>A
 
 "map CTRL-E to end-of-line (insert mode)
-imap <C-e> <esc>$a 
+imap <C-e> <esc>A
 
+nnoremap <leader>dp :VimwikiDiaryPrevDay <Enter>
+nnoremap <leader>dn :VimwikiDiaryNextDay <Enter>
+
+let g:taskwiki_sort_orders={"U": "urgency-"}
 
 " ledger bookkeeping config:
 let g:ledger_maxwidth = 80
-let g:ledger_fillstring = '    -'
+" let g:ledger_fillstring = '    -'
 let g:ledger_detailed_first = 1
 let g:ledger_fold_blanks = 0
+let g:ledger_bin = 'ledger'
+
+" delete current file (useful for outdated tasknote files and other less common scenarios)
+nnoremap <leader>dd. :call delete(expand('%')) \| bdelete! <Enter>
+
+"
+nnoremap <leader>pas :vi ~/old-passwords/ahill.yml <Enter>
+
+" keybinding docs
+"
+" Commands                        Mode
+" --------                        ----
+" nmap, nnoremap, nunmap          Normal mode
+" imap, inoremap, iunmap          Insert and Replace mode
+" vmap, vnoremap, vunmap          Visual and Select mode
+" xmap, xnoremap, xunmap          Visual mode
+" smap, snoremap, sunmap          Select mode
+" cmap, cnoremap, cunmap          Command-line mode
+" omap, onoremap, ounmap          Operator pending mode
+" ------------------------------------------------------
+" nunmap - Unmap a normal mode map
+" vunmap - Unmap a visual and select mode map
+" xunmap - Unmap a visual mode map
+" sunmap - Unmap a select mode map
+" iunmap - Unmap an insert and replace mode map
+" cunmap - Unmap a command-line mode map
+" ounmap - Unmap an operator pending mode map
+" ------------------------------------------------------
+" can be used per filetype via autocommands
+" autocmd FileType python unmap! <F8>
