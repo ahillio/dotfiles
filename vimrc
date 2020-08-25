@@ -437,6 +437,9 @@ let wiki = {}
 let wiki.nested_syntaxes = {'ruby': 'ruby', 'python': 'python', 'c++': 'cpp', 'sh': 'sh', 'php': 'php', 'javascript': 'js'}
 let g:vimwiki_hl_headers = 1
 
+" @TODO: does this setting work properly?
+" vimwiki needs better tag configuration, currently `:VimwikiRebuildTags` breaks, I'm not sure why, perhaps spaces in file names?
+"let wiki.auto_tags = 1
 
 fun! ListToggleCheckBox()
   " @TODO get and save current cursor position then move to cursor position at end of function
