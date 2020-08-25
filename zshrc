@@ -153,9 +153,20 @@ alias zshrc='vi ~/.zshrc && source ~/.zshrc'
 
 alias xclip='xclip -sel clip'
 
-alias cal='khal'
 alias ical='khal interactive'
-#alias cal='ncal -bM'
+cal() {
+  if [ $# -eq 0 ]; then
+    ncal -bM
+  else
+    if [ $1 = '-c' ]; then
+      khal calendar
+    elif [ $1 = '-i' ]; then
+      khal interactive
+    else
+      khal $@
+    fi
+  fi
+}
 alias c='clear'
 alias cl='clear && ls -1'
 
@@ -184,6 +195,8 @@ alias dle='drush eval "print_r(array_keys(entity_get_info()));"'
 alias drush8='~/.drush8/vendor/drush/drush/drush'
 alias restart='echo "lOv13!" | sudo -S shutdown -r now'
 alias ww='cd ~/www && l'
+
+alias sshc='vi ~/.ssh/config'
 
 alias ld='ls -1 -d */. | sed "s|/\.||g"'
 #alias lsd='ls -1 -d */. | sed "s|/\.||g"'
@@ -244,17 +257,21 @@ alias vw='vi ~/Documents/wiki/index.mkd'
 alias wki='vi ~/Documents/wiki/index.mkd'
 alias wiki='vi ~/Documents/wiki/index.mkd'
 alias techwiki='vi ~/Work/ahillio_labs/tech-wiki/index.mkd'
+alias tw='vi ~/Work/ahillio_labs/tech-wiki/index.mkd'
 alias twiki='vi ~/Work/ahillio_labs/tech-wiki/index.mkd'
 alias wikitags="grep --color=always -r -e '^:\S*:$' ~/Documents/wiki/*.mkd ~/Documents/wiki/diary/*.mkd | cut -d '/' -f 6,7  "
 
 alias fb='fb-messenger-cli'
+alias mutt='neomutt'
+
+contacts() {  echo "\`khard\` will list all contacts.\n\`khard edit contact name\` will edit khard file for 'contact name'." }
 
 #The next lines enables shell command completion for Stripe
 fpath=(~/.stripe $fpath)
 autoload -Uz compinit && compinit -i 
 
-function stripekey { APIKEY=$(cat ~/.passwords/stripe-live-sk); stripe $@ --api-key=$APIKEY }
-function stripe-invoices { APIKEY=$(cat ~/.passwords/stripe-live-sk); curl https://api.stripe.com/v1/invoices -u $APIKEY: -G | jq -C '.data[] | {invoice_id: .id, client: .customer_name, amount: .total, status: .status} | .amount = "$" + (.amount/100|tostring)' }
+function stripekey { APIKEY=$(cat ~/.passwords/stripe-live-sk); stripe $@ --api-key=$APIKEY --live }
+function stripe-invoices { APIKEY=$(cat ~/.passwords/stripe-live-sk); curl https://api.stripe.com/v1/invoices -u $APIKEY: -G | jq -C '.data[] | {invoice_id: .id, client: .customer_name, date: .date | strftime("%Y-%m-%d"), amount: .total, status: .status} | .amount = "$" + (.amount/100|tostring)' }
 function stripe-balance { APIKEY=$(cat ~/.passwords/stripe-live-sk); stripe balance retrieve --api-key=$APIKEY }
 function stripe-payout { APIKEY=$(cat ~/.passwords/stripe-live-sk); stripe payouts create --amount=$1 --currency=usd --api-key=$APIKEY }
 function stripe-payouts { APIKEY=$(cat ~/.passwords/stripe-live-sk); stripe payouts list --limit=4 --api-key=$APIKEY | jq '.data[] | {dateCreated: .created | strftime("%Y-%m-%d"), status: .status, depositDate: .arrival_date | strftime("%Y-%m-%d"), amount: .amount,} | .amount = "$" + (.amount/100|tostring)' }
@@ -287,3 +304,8 @@ switch-term-color() {
     printf '\033Ptmux;\033\033]50;%s\007\033\\' "$arg"
   fi
 }
+
+fnd() {
+  find . -iname "*$1*"
+}
+
