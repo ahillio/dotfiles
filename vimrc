@@ -481,6 +481,29 @@ nnoremap <leader>dd. :call delete(expand('%')) \| bdelete! <Enter>
 "
 nnoremap <leader>pas :vi ~/old-passwords/ahill.yml <Enter>
 
+function TaskSearch()
+  let line = getline('.')
+  let task_id = split(line, "#")[1]
+  "let task_note = system('find ~/.task/notes/ -name ' . task_id . '\*')
+  let task_note = system('task ' . task_id . ' information | grep UUID | sed "s/UUID          \([[:alnum:]-]*\)/\1.mkd/" | tr -d "\n"')
+  "echo task_note
+  "echo system('task ' . task_id . ' information | grep UUID | sed "s/UUID          //"')
+  "exe 'e ' . task_note
+  """let task_note = task_note . '.mkd'
+  let tasknote_path_file = '~/.task/notes/' . task_note
+  if filereadable(expand(tasknote_path_file))
+    exe 'e ' . tasknote_path_file
+  else
+    call system('task ' . task_id . ' annotate "[tasknote]"')
+    exe 'e ' . tasknote_path_file
+    "echo tasknote_path_file
+  endif
+  "exe 'e ' . '~/.task/notes/' . task_note
+  "exe printf("e ~/.task/notes/%s.mkd", task_note)
+endfunction
+command! TaskSearch :call TaskSearch()
+nnoremap <leader>tn :TaskSearch <Enter>
+
 " keybinding docs
 "
 " Commands                        Mode
