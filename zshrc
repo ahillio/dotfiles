@@ -196,7 +196,15 @@ alias drush8='~/.drush8/vendor/drush/drush/drush'
 alias restart='echo "lOv13!" | sudo -S shutdown -r now'
 alias ww='cd ~/www && l'
 
+alias dev='ddev'
+alias dv='ddev'
+
 alias sshc='vi ~/.ssh/config'
+
+alias untar='tar -xvf'
+showport() {
+  sudo netstat -ltnp | grep -w "$1"
+}
 
 alias ld='ls -1 -d */. | sed "s|/\.||g"'
 #alias lsd='ls -1 -d */. | sed "s|/\.||g"'
@@ -251,6 +259,10 @@ alias tnt='tasknote'
 alias dot='cd ~/.dotfiles && ls'
 alias bin='cd ~/bin && ls'
 alias work='cd ~/Work && ls'
+alias down='cd ~/Downloads'
+
+alias spot='snap run spotify &'
+alias chrom='snap run chromium &'
 
 alias sysins='vi ~/bin/system-install.sh'
 alias vw='vi ~/Documents/wiki/index.mkd'
