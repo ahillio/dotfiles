@@ -283,8 +283,18 @@ let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 
-" Disable YouCompleteMe until I learn how to use it :/
-" let g:loaded_youcompleteme = 1
+" YouCompleteMe
+let g:loaded_youcompleteme = 1
+let g:ycm_filetype_specific_completion_to_disable = {
+      \ 'gitcommit': 1
+      \}
+
+" Ultisnips
+" Trigger configuration. You need to change this to something else than <tab>
+" if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="~"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " Show the syntax highlight groups are being used for the item under the
 " cursor (because in html syntax <em> tags get a distracting dark background:
