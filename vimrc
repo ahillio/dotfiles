@@ -433,8 +433,8 @@ autocmd BufRead,BufNewFile *.task,*.mkd,*.txt set nofoldenable
 "let g:vimwiki_list = [wiki_1, wiki_2, wiki_3]
 
 let g:vimwiki_list = [{'path': '~/Documents/wiki/', 'syntax': 'markdown', 'ext': '.mkd'},
-                     \ {'path': '~/Work/ahillio_labs/tech-wiki/', 'syntax': 'markdown', 'ext': '.mkd'},
-                     \ {'path': '~/Work/ahillio_labs/human-ecology/', 'syntax': 'markdown', 'ext': '.mkd'}]
+                     \ {'path': '~/Documents/wiki/tech/', 'syntax': 'markdown', 'ext': '.mkd'},
+                     \ {'path': '~/Documents/wiki/human-ecology/', 'syntax': 'markdown', 'ext': '.mkd'}]
 
 :call vimwiki#vars#init()
 
