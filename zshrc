@@ -272,6 +272,12 @@ alias techwiki='vi ~/Work/ahillio_labs/tech-wiki/index.mkd'
 alias tw='vi ~/Work/ahillio_labs/tech-wiki/index.mkd'
 alias twiki='vi ~/Work/ahillio_labs/tech-wiki/index.mkd'
 alias wikitags="grep --color=always -r -e '^:\S*:$' ~/Documents/wiki/*.mkd ~/Documents/wiki/diary/*.mkd | cut -d '/' -f 6,7  "
+#alias dreams='dreams.py | less -i'
+#alias dreams="dreams.py | vim - -c 'set nomodifiable' -c 'set ft=markdown' '+norm Go'"
+# @TODO perhaps source a vimrc via `-u` that makes `q` run `:q!`
+#alias dreams="dreams.py | view -"
+#alias dreams="dreams.py | vim - -c 'set ft=none' '+norm Go'"
+alias dreams="dreams.py | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=none' '+norm Go'"
 
 alias fb='fb-messenger-cli'
 alias mutt='neomutt'
