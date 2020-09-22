@@ -89,7 +89,7 @@ if has("autocmd")
 	augroup templates
     autocmd BufNewFile *.sh 0r ~/.vim/templates/template.sh
     autocmd BufNewFile ecotech_*.mkd 0r ~/.vim/templates/template_ecotech.mkd
-    autocmd BufNewFile ~/Documents/wiki/diary/*.mkd :silent 0r !vimwiki-diary-template.py
+    autocmd BufNewFile ~/Documents/wiki/diary/[0-9]\\\{4\}-[0-9]\\\{2\}-[0-9]\\\{2\}.mkd :execute 'silent 0r !vimwiki-diary-template.py' | normal 6gg
   augroup END  
   " VimWiki Diary
   command! Diary VimwikiDiaryIndex
