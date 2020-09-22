@@ -149,6 +149,7 @@ alias taskrc='vi ~/.taskrc'
 alias tigrc='vi ~/.tigrc'
 alias vitrc='vi ~/.vit/config.ini'
 alias vimrc='vi ~/.vimrc'
+# @TODO: `zshrc` alias should also do `tmux send-keys "source ~/.zshrc"` to all panes
 alias zshrc='vi ~/.zshrc && source ~/.zshrc'
 
 alias xclip='xclip -sel clip'
@@ -253,13 +254,14 @@ alias showz='watch -n 1 -c "$1"'
 alias t='vit'
 alias tim='timew summary :id'
 alias showtime="sho 'timew summary :id'"
-alias timlog='timew summary 2020-01-01 - tomorrow'
+alias timlog='timew :id summary 2020-01-01 - tomorrow'
 alias tnt='tasknote'
 
 alias dot='cd ~/.dotfiles && ls'
 alias bin='cd ~/bin && ls'
 alias work='cd ~/Work && ls'
 alias down='cd ~/Downloads'
+alias doc='cd ~/Documents'
 
 alias spot='snap run spotify &'
 alias chrom='snap run chromium &'
@@ -268,10 +270,12 @@ alias sysins='vi ~/bin/system-install.sh'
 alias vw='vi ~/Documents/wiki/index.mkd'
 alias wki='vi ~/Documents/wiki/index.mkd'
 alias wiki='vi ~/Documents/wiki/index.mkd'
-alias techwiki='vi ~/Work/ahillio_labs/tech-wiki/index.mkd'
-alias tw='vi ~/Work/ahillio_labs/tech-wiki/index.mkd'
-alias twiki='vi ~/Work/ahillio_labs/tech-wiki/index.mkd'
+alias techwiki='vi ~/Documents/wiki/tech/index.mkd'
+alias tw='vi ~/Documents/wiki/tech/index.mkd'
+alias twiki='vi ~/Documents/wiki/tech/index.mkd'
 alias wikitags="grep --color=always -r -e '^:\S*:$' ~/Documents/wiki/*.mkd ~/Documents/wiki/diary/*.mkd | cut -d '/' -f 6,7  "
+alias wikitaglist="wikitags | sed -r 's|.*(:[a-z_]*:)|\1|g' | sort -u"
+
 #alias dreams='dreams.py | less -i'
 #alias dreams="dreams.py | vim - -c 'set nomodifiable' -c 'set ft=markdown' '+norm Go'"
 # @TODO perhaps source a vimrc via `-u` that makes `q` run `:q!`
