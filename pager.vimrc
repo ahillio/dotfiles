@@ -77,6 +77,7 @@ set nowritebackup
 execute pathogen#infect()
 
 let g:airline_powerline_fonts = 1
+let g:airline_theme='raven' "ubaryd silver serene raven
 set laststatus=2
 " previously
 " set timeoutlen=50
@@ -99,8 +100,8 @@ syntax enable
 "@TODO use shell variable to set background light/dark
 "shell alias `bgl` & `bgd` should also set shell variables && bonus: `tmux
 "send-keys` to all vim instances to run `:set bg=` !!!
-set background=light
-"set background=dark
+"set background=light
+set background=dark
 colorscheme solarized
 
 set clipboard=unnamed
@@ -189,6 +190,7 @@ inoremap <c-s> <Esc>:w<CR>
 " works for 'normal' mode
 nnoremap <c-s> :w<CR>
 
+
 " for javascript coloring:
 let g:javascript_plugin_jsdoc = 1
 
@@ -232,7 +234,115 @@ nnoremap <leader>dd. :call delete(expand('%')) \| bdelete! <Enter>
 autocmd StdinReadPost * set nomodified
 
 " commands specifically for pager
-nmap q :q! <Enter>
-" the following `set` doesn't work :(
-set filetype=none
+nnoremap q :q!<CR>
 
+function DiaryTagBrowser()
+" @TODO needs logic to ensure this doesn't get called 
+  let line = getline('.')
+  if line =~ '^\(\a\)\{1,}$'
+  "if match(line, '^\(\a\)\{1,}$') == 0
+    let g:tag = line
+    w! /tmp/diary-tag-list.txt
+    enew | set ft=vimwiki
+    exe 'read !tagshow.py ' . line
+  else
+    w! /tmp/diary-tag-report.txt
+    ?^# \a\{6,9} \d\{2} \a\{3,} \d\{4}
+    let line = getline('.')
+    let diary = matchstr(line, '\(\d\{2}\) \(\a\{3,}\) \(\d\{4}\)')
+    let g:diary = diary
+    let g:line = line
+    let diary = '/home/alec/Documents/wiki/diary/' . substitute(diary, '\(\d\{2}\) \(\a\{3,}\) \(\d\{4}\)', '\3-\2-\1', '') . '.mkd'
+    if diary =~ 'January'
+      let diary = substitute(diary, 'January', '01', '')
+    elseif diary =~ 'February'
+      let diary = substitute(diary, 'February', '02', '')
+    elseif diary =~ 'March'
+      let diary = substitute(diary, 'March', '03', '')
+    elseif diary =~ 'April'
+      let diary = substitute(diary, 'April', '04', '')
+    elseif diary =~ 'May'
+      let diary = substitute(diary, 'May', '05', '')
+    elseif diary =~ 'June'
+      let diary = substitute(diary, 'June', '06', '')
+    elseif diary =~ 'July'
+      let diary = substitute(diary, 'July', '07', '')
+    elseif diary =~ 'August'
+      let diary = substitute(diary, 'August', '08', '')
+    elseif diary =~ 'September'
+      let diary = substitute(diary, 'September', '09', '')
+    elseif diary =~ 'October'
+      let diary = substitute(diary, 'October' '10', '')
+    elseif diary =~ 'November'
+      let diary = substitute(diary, 'November', '11', '')
+    elseif diary =~ 'December'
+      let diary = substitute(diary, 'December', '12', '')
+    endif
+    let dln = matchstr(line, 'line.\d\{1,}')
+    let g:dln = substitute(dln, 'line#', '', '',)
+    exe 'e ' . diary
+    ":dln
+    "search(g:tag)
+    "normal dln
+    "normal 45G
+    "echo g:dln
+    exe "normal " . g:dln . "G"
+    :normal zz
+    :source ~/.vimrc
+    set ft=vimwiki
+    "search('^# \a\{6,8} \d\{2} \a\{3,} \d\{4}', b)
+    "let diaryentry = line
+  " for next function, jumping to diary page...
+  " :help search for `b` (backwards) and other arguments like `c` to accept match at Cursor position
+  " search({pattern}, b)
+    "echo "not on a diaryTag"
+    "echo line
+  endif
+endfunction
+command! DiaryTagBrowser : call DiaryTagBrowser()
+nnoremap <Enter> :DiaryTagBrowser <Enter>
+nnoremap <Backspace> :bd! <Enter>
+
+
+"set nomodifiable
+"set readonly
+
+nmap <leader>nh :noh <Enter>
+
+"function TestPy()
+"python3 << EOF
+"print("Hello")
+"EOF
+"endfunction
+"command! Hi :call TestPy()
+
+
+" the following `set` doesn't work :(
+set filetype=markdown
+
+
+" keybinding docs
+"
+" Commands                        Mode
+" --------                        ----
+" map,  noremap,  unmap           Normal, Visual, Select, Operator-pending
+" nmap, nnoremap, nunmap          Normal mode
+" map!, noremap!, nmap!           Insert and Command-line
+" lmap, lnoremap, unmap           Insert, Command-line, Lang-Arg
+" imap, inoremap, iunmap          Insert and Replace mode
+" vmap, vnoremap, vunmap          Visual and Select mode
+" xmap, xnoremap, xunmap          Visual mode
+" smap, snoremap, sunmap          Select mode
+" cmap, cnoremap, cunmap          Command-line mode
+" omap, onoremap, ounmap          Operator pending mode
+" ------------------------------------------------------
+" nunmap - Unmap a normal mode map
+" vunmap - Unmap a visual and select mode map
+" xunmap - Unmap a visual mode map
+" sunmap - Unmap a select mode map
+" iunmap - Unmap an insert and replace mode map
+" cunmap - Unmap a command-line mode map
+" ounmap - Unmap an operator pending mode map
+" ------------------------------------------------------
+" can be used per filetype via autocommands
+" autocmd FileType python unmap! <F8>

@@ -62,6 +62,21 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
+" wiki page indexes
+function WikiPageIndex(pat, strip) abort
+  return glob(a:pat, v:false, v:true)
+        \ ->map({_, v -> printf('[%s](%s)', fnamemodify(v, ':t:r')->substitute(printf('^%s', a:strip), '', ''), fnamemodify(v, ':t'))})
+        \ ->join("\n")
+endfunction
+function MyLinks(pat, strip) abort
+  echo glob(a:pat, v:false, v:true)->map({_, v -> printf('%s', v)})
+  "map({_, v -> printf('[%s](%s)', fnamemodify(v, ':t:r')->substitute(printf('^%s', a:strip), '', ''), fnamemodify(v, ':t'))})
+  "echo glob(a:pat, v:false, v:true)
+"  return glob(a:pat, v:false, v:true)
+"        \ ->map({_, v -> printf('[%s](%s)', fnamemodify(v, ':t:r')->substitute(printf('^%s', a:strip), '', ''), fnamemodify(v, ':t'))})
+"        \ ->join("\n")
+endfunction
+
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
 
@@ -70,6 +85,14 @@ if has("autocmd")
   " 'cindent' is on in C files, etc.
   " Also load indent files, to automatically do language-dependent indenting.
   filetype plugin indent on
+
+  augroup WikiPageIndexes
+    autocmd!
+    autocmd BufEnter ecological-technologies.mkd /## Techniques and Technologies:/+
+          \ | .,'}- delete
+          \ | put! =MyLinks($HOME.'/Documents/wiki/human-ecology/ecotech_*.mkd', 'ecotech_')
+          "\ | put! =WikiPageIndex($HOME.'/Documents/wiki/human-ecology/ecotech_*.mkd', $HOME.'/Documents/wiki/human-ecology/ecotech_')
+  augroup END
 
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
@@ -89,7 +112,8 @@ if has("autocmd")
 	augroup templates
     autocmd BufNewFile *.sh 0r ~/.vim/templates/template.sh
     autocmd BufNewFile ecotech_*.mkd 0r ~/.vim/templates/template_ecotech.mkd
-    autocmd BufNewFile ~/Documents/wiki/diary/[0-9]\\\{4\}-[0-9]\\\{2\}-[0-9]\\\{2\}.mkd :execute 'silent 0r !vimwiki-diary-template.py' | normal 6gg
+    autocmd BufNewFile ~/Documents/wiki/diary/[0-9]\\\{4\}-[0-9]\\\{2\}-[0-9]\\\{2\}.mkd :execute 'silent 0r !vimwiki-diary-template.py' | normal 7gg
+    autocmd BufNewFile ~/Documents/wiki/tech/diary/[0-9]\\\{4\}-[0-9]\\\{2\}-[0-9]\\\{2\}.mkd :execute 'silent 0r !vimwiki-tech-diary.py' | normal 4gg
   augroup END  
   " VimWiki Diary
   command! Diary VimwikiDiaryIndex
