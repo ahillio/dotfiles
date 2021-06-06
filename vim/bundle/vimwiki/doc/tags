@@ -5,7 +5,7 @@
 :VimwikiAll2HTML[!]	vimwiki.txt	/*:VimwikiAll2HTML[!]*
 :VimwikiBacklinks	vimwiki.txt	/*:VimwikiBacklinks*
 :VimwikiCheckLinks	vimwiki.txt	/*:VimwikiCheckLinks*
-:VimwikiDeleteLink	vimwiki.txt	/*:VimwikiDeleteLink*
+:VimwikiDeleteFile	vimwiki.txt	/*:VimwikiDeleteFile*
 :VimwikiDiaryGenerateLinks	vimwiki.txt	/*:VimwikiDiaryGenerateLinks*
 :VimwikiDiaryIndex	vimwiki.txt	/*:VimwikiDiaryIndex*
 :VimwikiDiaryNextDay	vimwiki.txt	/*:VimwikiDiaryNextDay*
@@ -24,7 +24,7 @@
 :VimwikiNextTask	vimwiki.txt	/*:VimwikiNextTask*
 :VimwikiPrevLink	vimwiki.txt	/*:VimwikiPrevLink*
 :VimwikiRebuildTags	vimwiki.txt	/*:VimwikiRebuildTags*
-:VimwikiRenameLink	vimwiki.txt	/*:VimwikiRenameLink*
+:VimwikiRenameFile	vimwiki.txt	/*:VimwikiRenameFile*
 :VimwikiSearch	vimwiki.txt	/*:VimwikiSearch*
 :VimwikiSearchTags	vimwiki.txt	/*:VimwikiSearchTags*
 :VimwikiSplitLink	vimwiki.txt	/*:VimwikiSplitLink*

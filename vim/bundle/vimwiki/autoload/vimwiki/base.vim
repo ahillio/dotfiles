@@ -381,19 +381,30 @@ function! vimwiki#base#get_globlinks_escaped(...) abort
 endfunction
 
 
-function! vimwiki#base#generate_links(create) abort
+" Optional pattern argument
+function! vimwiki#base#generate_links(create, ...) abort
+  " Get pattern if present
+  " Globlal to script to be passed to closure
+  if a:0
+    let s:pattern = a:1
+  else
+    let s:pattern = ''
+  endif
 
+  " Define link generator closure
   let GeneratorLinks = copy(l:)
   function! GeneratorLinks.f() abort
     let lines = []
 
-    let links = vimwiki#base#get_wikilinks(vimwiki#vars#get_bufferlocal('wiki_nr'), 0)
+    let links = vimwiki#base#get_wikilinks(vimwiki#vars#get_bufferlocal('wiki_nr'), 0, s:pattern)
     call sort(links)
 
     let bullet = repeat(' ', vimwiki#lst#get_list_margin()) . vimwiki#lst#default_symbol().' '
+    let l:diary_file_paths = vimwiki#diary#get_diary_files()
+
     for link in links
       let link_infos = vimwiki#base#resolve_link(link)
-      if !vimwiki#base#is_diary_file(link_infos.filename)
+      if !vimwiki#base#is_diary_file(link_infos.filename, copy(l:diary_file_paths))
         if vimwiki#vars#get_wikilocal('syntax') ==# 'markdown'
           let link_tpl = vimwiki#vars#get_syntaxlocal('Weblink1Template')
         else
@@ -476,7 +487,8 @@ endfunction
 " Returns: a list containing all files of the given wiki as absolute file path.
 " If the given wiki number is negative, the diary of the current wiki is used
 " If the second argument is not zero, only directories are found
-function! vimwiki#base#find_files(wiki_nr, directories_only) abort
+" If third argument: pattern to search for
+function! vimwiki#base#find_files(wiki_nr, directories_only, ...) abort
   let wiki_nr = a:wiki_nr
   if wiki_nr >= 0
     let root_directory = vimwiki#vars#get_wikilocal('path', wiki_nr)
@@ -490,19 +502,22 @@ function! vimwiki#base#find_files(wiki_nr, directories_only) abort
   else
     let ext = vimwiki#vars#get_wikilocal('ext', wiki_nr)
   endif
+  " If pattern is given, use it
   " if current wiki is temporary -- was added by an arbitrary wiki file then do
   " not search wiki files in subdirectories. Or it would hang the system if
   " wiki file was created in $HOME or C:/ dirs.
-  if vimwiki#vars#get_wikilocal('is_temporary_wiki', wiki_nr)
+  if a:0 && a:1 !=# ''
+    let pattern = a:1
+  elseif vimwiki#vars#get_wikilocal('is_temporary_wiki', wiki_nr)
     let pattern = '*'.ext
   else
     let pattern = '**/*'.ext
   endif
-  let files = split(globpath(root_directory, pattern))
+  let files = split(globpath(root_directory, pattern), '\n')
 
   " filter excluded files before returning
   for pattern in vimwiki#vars#get_wikilocal('exclude_files')
-    let efiles = split(globpath(root_directory, pattern))
+    let efiles = split(globpath(root_directory, pattern), '\n')
     let files = filter(files, 'index(efiles, v:val) == -1')
   endfor
 
@@ -514,8 +529,9 @@ endfunction
 " files in the given wiki.
 " If the given wiki number is negative, the diary of the current wiki is used.
 " If also_absolute_links is nonzero, also return links of the form /file
-function! vimwiki#base#get_wikilinks(wiki_nr, also_absolute_links) abort
-  let files = vimwiki#base#find_files(a:wiki_nr, 0)
+" If pattern is not '', only filepaths matching pattern will be considered
+function! vimwiki#base#get_wikilinks(wiki_nr, also_absolute_links, pattern) abort
+  let files = vimwiki#base#find_files(a:wiki_nr, 0, a:pattern)
   if a:wiki_nr == vimwiki#vars#get_bufferlocal('wiki_nr')
     let cwd = vimwiki#path#wikify_path(expand('%:p:h'))
   elseif a:wiki_nr < 0
@@ -1368,7 +1384,7 @@ function! vimwiki#base#follow_link(split, ...) abort
       endif
     endif
 
-  else
+  else  " cursor is not on a link
     if a:0 >= 3
       execute 'normal! '.a:3
     elseif vimwiki#vars#get_global('create_link')
@@ -2117,9 +2133,14 @@ function! s:clean_url(url) abort
   let url = substitute(a:url, '\'.vimwiki#vars#get_wikilocal('ext').'$', '', '')
   " remove protocol and tld
   let url = substitute(url, '^\a\+\d*:', '', '')
+  " remove absolute path prefix
   let url = substitute(url, '^//', '', '')
   let url = substitute(url, '^\([^/]\+\)\.\a\{2,4}/', '\1/', '')
   let url_l = split(url, '/\|=\|-\|&\|?\|\.')
+  " case only a '-'
+  if url_l == []
+    return ''
+  endif
   let url_l = filter(url_l, 'v:val !=# ""')
   if url_l[0] ==# 'www'
     let url_l = url_l[1:]
@@ -2127,18 +2148,23 @@ function! s:clean_url(url) abort
   if url_l[-1] =~# '^\(htm\|html\|php\)$'
     let url_l = url_l[0:-2]
   endif
-  " remove words consisting of only hexadecimal digits or non-word characters
-  let url_l = filter(url_l, 'v:val !~?  "^\\A\\{4,}$"')
+  " remove words with black listed codepoints
+  " TODO mutualize blacklist in a variable
+  let url_l = filter(url_l, 'v:val !~?  "[!\"$%&''()*+,:;<=>?\[\]\\^`{}]"')
+  " remove words consisting of only hexadecimal digits
   let url_l = filter(url_l, 'v:val !~?  "^\\x\\{4,}$" || v:val !~? "\\d"')
   return join(url_l, ' ')
 endfunction
 
-
-function! vimwiki#base#is_diary_file(filename) abort
-  let file_path = vimwiki#path#path_norm(a:filename)
-  let rel_path = vimwiki#vars#get_wikilocal('diary_rel_path')
-  let diary_path = vimwiki#path#path_norm(vimwiki#vars#get_wikilocal('path') . rel_path)
-  return rel_path !=? '' && file_path =~# '^'.vimwiki#u#escape(diary_path)
+" An optional second argument allows you to pass in a list of diary files rather
+" than generating a list on each call to the function.
+function! vimwiki#base#is_diary_file(filename, ...) abort
+  let l:diary_file_paths = a:0 > 0 ? a:1 : vimwiki#diary#get_diary_files()
+  let l:normalised_file_paths =
+        \ map(l:diary_file_paths, 'vimwiki#path#normalize(v:val)')
+  let l:matching_files =
+        \ filter(l:normalised_file_paths, 'v:val =~# a:filename')
+  return len(l:matching_files) > 0 " filename is a diary file if match is found
 endfunction
 
 
@@ -2149,8 +2175,10 @@ function! vimwiki#base#normalize_link_helper(str, rxUrl, rxDesc, template) abort
     let url = substitute(url, '\'.vimwiki#vars#get_wikilocal('ext').'$', '', '')
   endif
   let descr = matchstr(a:str, a:rxDesc)
+  " Try to clean, do not work if bad link
   if descr ==# ''
     let descr = s:clean_url(url)
+    if descr ==# '' | return url | endif
   endif
   let lnk = s:safesubstitute(a:template, '__LinkDescription__', descr, '')
   let lnk = s:safesubstitute(lnk, '__LinkUrl__', url, '')
@@ -2179,11 +2207,6 @@ function! vimwiki#base#normalize_link_in_diary(lnk) abort
     let str = a:lnk
     let rxUrl = vimwiki#vars#get_global('rxWord')
     let rxDesc = '\d\d\d\d-\d\d-\d\d'
-    let template = vimwiki#vars#get_global('WikiLinkTemplate1')
-  elseif link_exists_in_diary
-    let str = a:lnk
-    let rxUrl = vimwiki#vars#get_global('rxWord')
-    let rxDesc = ''
     let template = vimwiki#vars#get_global('WikiLinkTemplate1')
   elseif link_exists_in_wiki
     let depth = len(split(vimwiki#vars#get_wikilocal('diary_rel_path'), '/'))
@@ -2357,6 +2380,11 @@ function! vimwiki#base#search(search_pattern) abort
   endtry
 endfunction
 
+function! vimwiki#base#deprecate(old, new) abort
+  echohl WarningMsg
+  echo a:old 'is deprecated and will be removed in future versions, use' a:new 'instead.'
+  echohl None
+endfunction
 
 " -------------------------------------------------------------------------
 " Load syntax-specific Wiki functionality

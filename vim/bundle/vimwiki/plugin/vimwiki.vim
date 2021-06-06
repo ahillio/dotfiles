@@ -10,7 +10,7 @@ endif
 let g:loaded_vimwiki = 1
 
 " Set to version number for release, otherwise -1 for dev-branch
-let s:plugin_vers = -1
+let s:plugin_vers = 2.5
 
 " Get the directory the script is installed in
 let s:plugin_dir = expand('<sfile>:p:h:h')
@@ -82,7 +82,7 @@ function! s:setup_new_wiki_buffer() abort
   endif
 
   if vimwiki#vars#get_wikilocal('maxhi')
-    call vimwiki#vars#set_bufferlocal('existing_wikifiles', vimwiki#base#get_wikilinks(wiki_nr, 1))
+    call vimwiki#vars#set_bufferlocal('existing_wikifiles', vimwiki#base#get_wikilinks(wiki_nr, 1, ''))
     call vimwiki#vars#set_bufferlocal('existing_wikidirs',
           \ vimwiki#base#get_wiki_directories(wiki_nr))
   endif
@@ -211,6 +211,8 @@ function! s:get_version() abort
     let l:plugin_branch = system('git --git-dir ' . s:plugin_dir . '/.git rev-parse --abbrev-ref HEAD')
     let l:plugin_date   = system('git --git-dir ' . s:plugin_dir . '/.git show -s --format=%ci')
     if v:shell_error == 0
+      echo 'Os: ' . vimwiki#u#os_name()
+      echo 'Vim: ' . v:version
       echo 'Branch: ' . l:plugin_branch
       echo 'Revision: ' . l:plugin_rev
       echo 'Date: ' . l:plugin_date

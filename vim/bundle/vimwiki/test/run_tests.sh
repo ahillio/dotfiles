@@ -122,6 +122,10 @@ vader_filter() {
     fi
 }
 
+# Say Hi
+echo -en "Starting $(basename $0) for VimWiki\n"
+
+
 red='\033[0;31m'
 green='\033[0;32m'
 nc='\033[0m'
@@ -215,18 +219,30 @@ fi
 trap exit 1 SIGINT SIGTERM
 
 # select which tests should run
+o_error=0
 case $type in
     "vader" )
         runVader
+        echo "Vader: returned $?"
+        o_error=$(( $? | $o_error ))
         ;;
     "vint" )
         runVint
+        echo "Vint: returned $?"
+        o_error=$(( $? | $o_error ))
         ;;
     "all" )
         runVint
+        echo "Vint: returned $?"
+        o_error=$(( $? | $o_error ))
         runVader
+        echo "Vader: returned $?"
+        o_error=$(( $? | $o_error ))
         ;;
     * )
         echo "Error: invalid type - '$type'" 1>&2
         exit 1
 esac
+
+echo "Script $(basename $0) exiting: $o_error"
+exit $o_error

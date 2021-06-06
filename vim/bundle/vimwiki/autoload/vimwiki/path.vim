@@ -20,12 +20,12 @@ else
   endfunction
 endif
 
-
-" collapse sections like /a/b/../c to /a/c
+" collapse sections like /a/b/../c to /a/c and /a/b/./c to /a/b/c
 function! vimwiki#path#normalize(path) abort
   let path = a:path
   while 1
-    let result = substitute(path, '/[^/]\+/\.\.', '', '')
+    let intermediateResult = substitute(path, '/[^/]\+/\.\.', '', '')
+    let result = substitute(intermediateResult, '/\./', '/', '')
     if result ==# path
       break
     endif
