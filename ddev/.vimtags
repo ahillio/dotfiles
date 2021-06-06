@@ -1,0 +1,290 @@
+!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+-78,19 +78,25	/home/alec/vim-easytags/universal-tag-support.patch	/^@@ -78,19 +78,25 @@ function! xolox#easytags#check_ctags_compatible(name, min_version) " {{{2$/;"	h	language:Diff	modifiedFile:a/autoload/xolox/easytags.vim
+<C-e>	/home/alec/.vimrc	/^imap <C-e> <esc>A$/;"	m	language:Vim
+<C-H>	/home/alec/.dotfiles/remote-servers/remote-vim/vimrc	/^nnoremap <C-H> <C-W><C-H>$/;"	m	language:Vim
+<c-h>	/home/alec/.dotfiles/remote-servers/remote-vim/vimrc	/^nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>$/;"	m	language:Vim
+<C-H>	/home/alec/.vimrc	/^nnoremap <C-H> <C-W><C-H>$/;"	m	language:Vim
+<c-h>	/home/alec/.vimrc	/^nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>$/;"	m	language:Vim
+<C-J>	/home/alec/.dotfiles/remote-servers/remote-vim/vimrc	/^nnoremap <C-J> <C-W><C-J>$/;"	m	language:Vim
+<c-j>	/home/alec/.dotfiles/remote-servers/remote-vim/vimrc	/^nnoremap <silent> <c-j> :TmuxNavigateDown<cr>$/;"	m	language:Vim
+<C-J>	/home/alec/.vimrc	/^nnoremap <C-J> <C-W><C-J>$/;"	m	language:Vim
+<c-j>	/home/alec/.vimrc	/^nnoremap <silent> <c-j> :TmuxNavigateDown<cr>$/;"	m	language:Vim
+<C-K>	/home/alec/.dotfiles/remote-servers/remote-vim/vimrc	/^nnoremap <C-K> <C-W><C-K>$/;"	m	language:Vim
+<c-k>	/home/alec/.dotfiles/remote-servers/remote-vim/vimrc	/^nnoremap <silent> <c-k> :TmuxNavigateUp<cr>$/;"	m	language:Vim
+<C-K>	/home/alec/.vimrc	/^nnoremap <C-K> <C-W><C-K>$/;"	m	language:Vim
+<c-k>	/home/alec/.vimrc	/^nnoremap <silent> <c-k> :TmuxNavigateUp<cr>$/;"	m	language:Vim
+<C-L>	/home/alec/.dotfiles/remote-servers/remote-vim/vimrc	/^nnoremap <C-L> <C-W><C-L>$/;"	m	language:Vim
+<c-l>	/home/alec/.dotfiles/remote-servers/remote-vim/vimrc	/^nnoremap <silent> <c-l> :TmuxNavigateRight<cr>$/;"	m	language:Vim
+<C-L>	/home/alec/.vimrc	/^nnoremap <C-L> <C-W><C-L>$/;"	m	language:Vim
+<c-l>	/home/alec/.vimrc	/^nnoremap <silent> <c-l> :TmuxNavigateRight<cr>$/;"	m	language:Vim
+<c-s>	/home/alec/.dotfiles/remote-servers/remote-vim/vimrc	/^inoremap <c-s> <Esc>:w<CR>$/;"	m	language:Vim
+<c-s>	/home/alec/.dotfiles/remote-servers/remote-vim/vimrc	/^nnoremap <c-s> :w<CR>$/;"	m	language:Vim
+<c-s>	/home/alec/.vimrc	/^inoremap <c-s> <Esc>:w<CR>$/;"	m	language:Vim
+<c-s>	/home/alec/.vimrc	/^nnoremap <c-s> :w<CR>$/;"	m	language:Vim
+<C-U>	/home/alec/.vimrc	/^inoremap <C-U> <C-G>u<C-U>$/;"	m	language:Vim
+<C-x>	/home/alec/.vimrc	/^imap <C-x> <esc>:ListToggleCheckBox<CR>A$/;"	m	language:Vim
+<C-x>	/home/alec/.vimrc	/^nnoremap <C-x> :ListToggleCheckBox<CR>\$$/;"	m	language:Vim
+<Leader>bgd	/home/alec/.vimrc	/^map <Leader>bgd :set background=dark <Enter>$/;"	m	language:Vim
+<Leader>bgl	/home/alec/.vimrc	/^map <Leader>bgl :set background=light <Enter>$/;"	m	language:Vim
+<leader>dd.	/home/alec/.vimrc	/^nnoremap <leader>dd. :call delete(expand('%')) \\| bdelete! <Enter>$/;"	m	language:Vim
+<leader>dn	/home/alec/.vimrc	/^nnoremap <leader>dn :VimwikiDiaryNextDay <Enter>$/;"	m	language:Vim
+<leader>dp	/home/alec/.vimrc	/^nnoremap <leader>dp :VimwikiDiaryPrevDay <Enter>$/;"	m	language:Vim
+<Leader>fp	/home/alec/.vimrc	/^map <Leader>fp :let @+ = expand("%")<cr>$/;"	m	language:Vim
+<Leader>i	/home/alec/.vimrc	/^map <Leader>i mmgg=G`m<CR>$/;"	m	language:Vim
+<leader>pas	/home/alec/.vimrc	/^nnoremap <leader>pas :vi ~\/old-passwords\/ahill.yml <Enter>$/;"	m	language:Vim
+<Leader>s	/home/alec/.vimrc	/^map <Leader>s :<C-U>echo 'Hello World'<CR>$/;"	m	language:Vim
+<leader>tn	/home/alec/.vimrc	/^nnoremap <leader>tn :TaskSearch <Enter>$/;"	m	language:Vim
+<leader>x	/home/alec/.vimrc	/^nnoremap <leader>x :ListToggleCheckBox<CR>\$$/;"	m	language:Vim
+<Leader>yf	/home/alec/.vimrc	/^map <Leader>yf :let @+ = expand("%")<cr>$/;"	m	language:Vim
+a/autoload/xolox/easytags.vim	/home/alec/vim-easytags/universal-tag-support.patch	/^--- a\/autoload\/xolox\/easytags.vim$/;"	m	language:Diff
+ADDRESS_SANITIZER_CFLAGS	/home/alec/bin/tig-2.5.1/Makefile	/^ADDRESS_SANITIZER_CFLAGS ?= -fsanitize=address -fno-omit-frame-pointer$/;"	m	language:Make
+ALLDOC	/home/alec/bin/tig-2.5.1/Makefile	/^ALLDOC	= $(MANDOC) $(HTMLDOC) doc\/manual.html-chunked doc\/manual.pdf$/;"	m	language:Make
+annotation	/home/alec/bin/timew-report/timewreport/interval.py	/^    def annotation(self):$/;"	m	language:Python	class:TimeWarriorInterval
+ant	/home/alec/bin/timewarrior-custom.py	/^        ant = interval.get_annotation()$/;"	v	language:Python
+ASCIIDOC	/home/alec/bin/tig-2.5.1/Makefile	/^ASCIIDOC ?= asciidoc$/;"	m	language:Make
+ASCIIDOC_FLAGS	/home/alec/bin/tig-2.5.1/Makefile	/^ASCIIDOC_FLAGS = -aversion=$(VERSION) -asysconfdir=$(sysconfdir) -f doc\/asciidoc.conf$/;"	m	language:Make
+bindir	/home/alec/bin/tig-2.5.1/Makefile	/^bindir ?= $(prefix)\/bin$/;"	m	language:Make
+buf	/home/alec/bin/add-task-to-diary.py	/^    buf = in_file.readlines()$/;"	v	language:Python
+calEvents	/home/alec/bin/vimwiki-diary-template.py	/^calEvents = ''$/;"	v	language:Python
+calEvents	/home/alec/bin/vimwiki-diary-template.py	/^calEvents = subprocess.run("khal list today 1d | tail -n +2", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)$/;"	v	language:Python
+cdl	/home/alec/.dotfiles/remote-servers/bashrc	/^cdl() { cd "$@" && ls -1; }$/;"	f	language:Sh
+cdl	/home/alec/.zshrc	/^function cdl { cd "$@" && ls -1 }$/;"	f	language:Sh
+cdl	/home/alec/.zshrc	/^function cdl { cd "$@" && ls -1 }$/;"	f	language:Sh
+cdl	/home/alec/tmp.bashrc	/^function cdl { cd "$@" && ls -1 }$/;"	f	language:Sh
+CFLAGS	/home/alec/bin/tig-2.5.1/Makefile	/^CFLAGS ?= -Wall -O2 $(TIG_CFLAGS)$/;"	m	language:Make
+CIVICRM_CLEANURL	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^    define('CIVICRM_CLEANURL', 0);$/;"	d	language:PHP
+CIVICRM_CLEANURL	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^    define('CIVICRM_CLEANURL', 1 );$/;"	d	language:PHP
+CIVICRM_CLEANURL	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^    define('CIVICRM_CLEANURL', 1 );$/;"	d	language:PHP
+CIVICRM_CLEANURL	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^    define('CIVICRM_CLEANURL', 1 );$/;"	d	language:PHP
+CIVICRM_DB_CACHE_CLASS	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^  define('CIVICRM_DB_CACHE_CLASS', 'ArrayCache');$/;"	d	language:PHP
+CIVICRM_DB_CACHE_HOST	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^  define('CIVICRM_DB_CACHE_HOST', 'localhost');$/;"	d	language:PHP
+CIVICRM_DB_CACHE_PASSWORD	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^  define('CIVICRM_DB_CACHE_PASSWORD', '' );$/;"	d	language:PHP
+CIVICRM_DB_CACHE_PORT	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^    define('CIVICRM_DB_CACHE_PORT', 11211);$/;"	d	language:PHP
+CIVICRM_DB_CACHE_PORT	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^    define('CIVICRM_DB_CACHE_PORT', 6379 );$/;"	d	language:PHP
+CIVICRM_DB_CACHE_PREFIX	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^  define('CIVICRM_DB_CACHE_PREFIX', '');$/;"	d	language:PHP
+CIVICRM_DB_CACHE_TIMEOUT	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^  define('CIVICRM_DB_CACHE_TIMEOUT', 3600 );$/;"	d	language:PHP
+CIVICRM_DEADLOCK_RETRIES	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^define('CIVICRM_DEADLOCK_RETRIES', 3);$/;"	d	language:PHP
+CIVICRM_DOMAIN_ID	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^  define( 'CIVICRM_DOMAIN_ID', 1);$/;"	d	language:PHP
+CIVICRM_DSN	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^    define('CIVICRM_DSN', $GLOBALS['_CV']['TEST_DB_DSN']);$/;"	d	language:PHP
+CIVICRM_DSN	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^    define('CIVICRM_DSN', 'mysql:\/\/db:db@db:3306\/db?new_link=true');$/;"	d	language:PHP
+CIVICRM_LOGGING_DSN	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^  define('CIVICRM_LOGGING_DSN', CIVICRM_DSN);$/;"	d	language:PHP
+CIVICRM_MAIL_SMARTY	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^  define( 'CIVICRM_MAIL_SMARTY', 0 );$/;"	d	language:PHP
+CIVICRM_PSR16_STRICT	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^  define('CIVICRM_PSR16_STRICT', FALSE);$/;"	d	language:PHP
+civicrm_root	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^$civicrm_root = '\/var\/www\/html\/vendor\/civicrm\/civicrm-core\/';$/;"	v	language:PHP
+CIVICRM_SITE_KEY	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^  define( 'CIVICRM_SITE_KEY', 'q5XgNiKa2vD7rVeU8rcpupY7LkB4GLDNUNDGzTJg');$/;"	d	language:PHP
+CIVICRM_TEMPLATE_COMPILEDIR	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^  define( 'CIVICRM_TEMPLATE_COMPILEDIR', '\/var\/www\/html\/web\/sites\/default\/files\/civicrm\/templates_c');$/;"	d	language:PHP
+CIVICRM_UF	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^    define('CIVICRM_UF', 'Drupal8');$/;"	d	language:PHP
+CIVICRM_UF	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^    define('CIVICRM_UF', getenv('CIVICRM_UF'));$/;"	d	language:PHP
+CIVICRM_UF_BASEURL	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^  define( 'CIVICRM_UF_BASEURL'      , 'https:\/\/atn.ddev.site');$/;"	d	language:PHP
+CIVICRM_UF_DSN	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^  define( 'CIVICRM_UF_DSN'           , 'mysql:\/\/db:db@db:3306\/db?new_link=true');$/;"	d	language:PHP
+color_my_prompt	/home/alec/.dotfiles/remote-servers/bashrc	/^function color_my_prompt {$/;"	f	language:Sh
+CombineSelection	/home/alec/.vimrc	/^function! s:CombineSelection(line1, line2, cp)$/;"	f	language:Vim
+COMMIT	/home/alec/bin/tig-2.5.1/Makefile	/^COMMIT := $(if $(GITDESC),$(GITDESC),$(VERSION)-g$(shell git describe --always))$/;"	m	language:Make
+configure	/home/alec/.ptpython/config.py	/^def configure(repl):$/;"	f	language:Python
+COVERAGE_CFLAGS	/home/alec/bin/tig-2.5.1/Makefile	/^COVERAGE_CFLAGS ?= -fprofile-arcs -ftest-coverage$/;"	m	language:Make
+COVERAGE_DIR	/home/alec/bin/tig-2.5.1/Makefile	/^COVERAGE_DIR 	?= test\/coverage$/;"	m	language:Make
+CPPFLAGS	/home/alec/bin/tig-2.5.1/Makefile	/^CPPFLAGS ?= $(TIG_CPPFLAGS)$/;"	m	language:Make
+datarootdir	/home/alec/bin/tig-2.5.1/Makefile	/^datarootdir ?= $(prefix)\/share$/;"	m	language:Make
+date	/home/alec/bin/add-task-to-diary.py	/^date = datetime.date.today()$/;"	v	language:Python
+date	/home/alec/bin/timewarrior-custom.py	/^        date = interval.get_start()$/;"	v	language:Python
+date	/home/alec/bin/vimwiki-diary-template.py	/^date = datetime.strftime(datetime.now(), "%A %d %B %Y")$/;"	v	language:Python
+decimal	/home/alec/bin/timewarrior-custom.py	/^decimal = mins \/ 60$/;"	v	language:Python
+DEPS_CFLAGS	/home/alec/bin/tig-2.5.1/Makefile	/^DEPS_CFLAGS ?= -MMD -MP -MF .deps\/$*.d$/;"	m	language:Make
+DFLAGS	/home/alec/bin/tig-2.5.1/Makefile	/^DFLAGS	= -g -DDEBUG -Werror -O0$/;"	m	language:Make
+Diary	/home/alec/.vimrc	/^  command! Diary VimwikiDiaryIndex$/;"	c	language:Vim
+diary	/home/alec/bin/add-task-to-diary.py	/^diary = "\/home\/alec\/Documents\/wiki\/diary\/" + str(date) + ".mkd"$/;"	v	language:Python
+DiffOrig	/home/alec/.vimrc	/^  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis$/;"	c	language:Vim
+doc	/home/alec/bin/tig-2.5.1/Makefile	/^	doc="doc\/tigrc.5.adoc"; \\$/;"	m	language:Make
+DOCBOOK2PDF	/home/alec/bin/tig-2.5.1/Makefile	/^DOCBOOK2PDF ?= docbook2pdf$/;"	m	language:Make
+docdir	/home/alec/bin/tig-2.5.1/Makefile	/^docdir ?= $(datarootdir)\/doc$/;"	m	language:Make
+DOC_GEN_OBJS	/home/alec/bin/tig-2.5.1/Makefile	/^DOC_GEN_OBJS = tools\/doc-gen.o src\/string.o src\/types.o src\/util.o src\/request.o $(COMPAT_OBJS)$/;"	m	language:Make
+DoubleUnderline	/home/alec/.vimrc	/^command! -range -nargs=0 DoubleUnderline call s:CombineSelection(<line1>, <line2>, '0333')$/;"	c	language:Vim
+duration	/home/alec/bin/timewarrior-custom.py	/^        duration = interval.get_duration()$/;"	v	language:Python
+EXE	/home/alec/bin/tig-2.5.1/Makefile	/^EXE	= src\/tig$/;"	m	language:Make
+fnd	/home/alec/bin/fnd.sh	/^fnd() {$/;"	f	language:Sh
+FormatJson	/home/alec/.vimrc	/^command! FormatJson %!python -m json.tool$/;"	c	language:Vim
+formatted	/home/alec/bin/timewarrior-show-all-time.py	/^    formatted = totals[tag]$/;"	v	language:Python
+g:airline_left_alt_sep	/home/alec/.vimrc	/^let g:airline_left_alt_sep = ''$/;"	v	language:Vim
+g:airline_left_sep	/home/alec/.vimrc	/^let g:airline_left_sep = '»'$/;"	v	language:Vim
+g:airline_left_sep	/home/alec/.vimrc	/^let g:airline_left_sep = '▶'$/;"	v	language:Vim
+g:airline_left_sep	/home/alec/.vimrc	/^let g:airline_left_sep = ''$/;"	v	language:Vim
+g:airline_powerline_fonts	/home/alec/.vimrc	/^let g:airline_powerline_fonts = 1$/;"	v	language:Vim
+g:airline_right_alt_sep	/home/alec/.vimrc	/^let g:airline_right_alt_sep = ''$/;"	v	language:Vim
+g:airline_right_sep	/home/alec/.vimrc	/^let g:airline_right_sep = '«'$/;"	v	language:Vim
+g:airline_right_sep	/home/alec/.vimrc	/^let g:airline_right_sep = '◀'$/;"	v	language:Vim
+g:airline_right_sep	/home/alec/.vimrc	/^let g:airline_right_sep = ''$/;"	v	language:Vim
+g:airline_symbols	/home/alec/.vimrc	/^    let g:airline_symbols = {}$/;"	v	language:Vim
+g:airline_symbols	/home/alec/.vimrc	/^  let g:airline_symbols = {}$/;"	v	language:Vim
+g:airline_symbols	/home/alec/.vimrc	/^let g:airline_symbols.branch = '⎇'$/;"	v	language:Vim
+g:airline_symbols	/home/alec/.vimrc	/^let g:airline_symbols.branch = ''$/;"	v	language:Vim
+g:airline_symbols	/home/alec/.vimrc	/^let g:airline_symbols.linenr = '¶'$/;"	v	language:Vim
+g:airline_symbols	/home/alec/.vimrc	/^let g:airline_symbols.linenr = '␊'$/;"	v	language:Vim
+g:airline_symbols	/home/alec/.vimrc	/^let g:airline_symbols.linenr = '␤'$/;"	v	language:Vim
+g:airline_symbols	/home/alec/.vimrc	/^let g:airline_symbols.linenr = ''$/;"	v	language:Vim
+g:airline_symbols	/home/alec/.vimrc	/^let g:airline_symbols.paste = 'Þ'$/;"	v	language:Vim
+g:airline_symbols	/home/alec/.vimrc	/^let g:airline_symbols.paste = 'ρ'$/;"	v	language:Vim
+g:airline_symbols	/home/alec/.vimrc	/^let g:airline_symbols.paste = '∥'$/;"	v	language:Vim
+g:airline_symbols	/home/alec/.vimrc	/^let g:airline_symbols.readonly = ''$/;"	v	language:Vim
+g:airline_symbols	/home/alec/.vimrc	/^let g:airline_symbols.whitespace = 'Ξ'$/;"	v	language:Vim
+g:airline_theme	/home/alec/.vimrc	/^let g:airline_theme='raven' "ubaryd silver serene raven$/;"	v	language:Vim
+g:javascript_plugin_jsdoc	/home/alec/.vimrc	/^let g:javascript_plugin_jsdoc = 1$/;"	v	language:Vim
+g:ledger_bin	/home/alec/.vimrc	/^let g:ledger_bin = 'ledger'$/;"	v	language:Vim
+g:ledger_detailed_first	/home/alec/.vimrc	/^let g:ledger_detailed_first = 1$/;"	v	language:Vim
+g:ledger_fold_blanks	/home/alec/.vimrc	/^let g:ledger_fold_blanks = 0$/;"	v	language:Vim
+g:ledger_maxwidth	/home/alec/.vimrc	/^let g:ledger_maxwidth = 80$/;"	v	language:Vim
+g:solarized_contrast	/home/alec/.vimrc	/^let g:solarized_contrast = "high"$/;"	v	language:Vim
+g:solarized_termcolors	/home/alec/.dotfiles/remote-servers/remote-vim/vimrc	/^let g:solarized_termcolors=256$/;"	v	language:Vim
+g:solarized_termcolors	/home/alec/.vimrc	/^let g:solarized_termcolors = 256$/;"	v	language:Vim
+g:solarized_visibility	/home/alec/.vimrc	/^let g:solarized_visibility = "high"$/;"	v	language:Vim
+g:taskwiki_sort_orders	/home/alec/.vimrc	/^let g:taskwiki_sort_orders={"U": "urgency-"}$/;"	v	language:Vim
+g:tmux_navigator_no_mappings	/home/alec/.dotfiles/remote-servers/remote-vim/vimrc	/^let g:tmux_navigator_no_mappings = 1$/;"	v	language:Vim
+g:tmux_navigator_no_mappings	/home/alec/.vimrc	/^let g:tmux_navigator_no_mappings = 1$/;"	v	language:Vim
+g:vdebug_keymap	/home/alec/.vimrc	/^let g:vdebug_keymap = {$/;"	v	language:Vim
+g:vdebug_options	/home/alec/.vimrc	/^let g:vdebug_options = {}$/;"	v	language:Vim
+g:vdebug_options	/home/alec/.vimrc	/^let g:vdebug_options['break_on_open'] = 0$/;"	v	language:Vim
+g:vdebug_options	/home/alec/.vimrc	/^let g:vdebug_options['max_children'] = 128$/;"	v	language:Vim
+g:vdebug_options	/home/alec/.vimrc	/^let g:vdebug_options['server'] = ""$/;"	v	language:Vim
+g:vdebug_options	/home/alec/.vimrc	/^let g:vdebug_options['watch_window_style'] = 'compact'$/;"	v	language:Vim
+g:vimwiki_ext2syntax	/home/alec/.vimrc	/^let g:vimwiki_ext2syntax = {'.mkd': 'markdown', '.md': 'markdown', '.mdown': 'markdown', '.markdown': 'markdown'}$/;"	v	language:Vim
+g:vimwiki_hl_headers	/home/alec/.vimrc	/^let g:vimwiki_hl_headers = 1$/;"	v	language:Vim
+g:vimwiki_list	/home/alec/.vimrc	/^let g:vimwiki_list = [{'path': '~\/Documents\/wiki\/', 'syntax': 'markdown', 'ext': '.mkd'},$/;"	v	language:Vim
+GENHTML	/home/alec/bin/tig-2.5.1/Makefile	/^GENHTML ?= genhtml$/;"	m	language:Make
+get_date	/home/alec/bin/timew-report/timewreport/interval.py	/^    def get_date(self):$/;"	m	language:Python	class:TimeWarriorInterval
+get_duration	/home/alec/bin/timew-report/timewreport/interval.py	/^    def get_duration(self):$/;"	m	language:Python	class:TimeWarriorInterval
+get_end	/home/alec/bin/timew-report/timewreport/interval.py	/^    def get_end(self):$/;"	m	language:Python	class:TimeWarriorInterval
+get_start	/home/alec/bin/timew-report/timewreport/interval.py	/^    def get_start(self):$/;"	m	language:Python	class:TimeWarriorInterval
+get_tags	/home/alec/bin/timew-report/timewreport/interval.py	/^    def get_tags(self):$/;"	m	language:Python	class:TimeWarriorInterval
+ginit	/home/alec/.dotfiles/remote-servers/bashrc	/^ginit() {$/;"	f	language:Sh
+GITDESC	/home/alec/bin/tig-2.5.1/Makefile	/^GITDESC	= $(subst tig-,,$(shell git describe 2>\/dev\/null))$/;"	m	language:Make
+GIT_INDEX_FILE	/home/alec/bin/tig-2.5.1/Makefile	/^	GIT_INDEX_FILE=.tmp-doc-index git checkout-index -f --prefix=.\/ $(HTMLDOC)$/;"	m	language:Make
+GIT_INDEX_FILE	/home/alec/bin/tig-2.5.1/Makefile	/^	GIT_INDEX_FILE=.tmp-doc-index git checkout-index -f --prefix=.\/ $(MANDOC)$/;"	m	language:Make
+GotoTaskLine	/home/alec/.vimrc	/^  function GotoTaskLine()$/;"	f	language:Vim
+grand_total	/home/alec/bin/timewarrior-show-all-time.py	/^grand_total = 0$/;"	v	language:Python
+grand_total	/home/alec/bin/timewarrior-show-all-time.py	/^grand_total = datetime.timedelta(seconds=grand_total)$/;"	v	language:Python
+GRAPH_OBJS	/home/alec/bin/tig-2.5.1/Makefile	/^GRAPH_OBJS = src\/graph.o src\/graph-v1.o src\/graph-v2.o$/;"	m	language:Make
+host	/home/alec/www/ATN/web/sites/default/settings.ddev.php	/^  $host = "127.0.0.1";$/;"	v	language:PHP
+host	/home/alec/www/ATN/web/sites/default/settings.ddev.php	/^$host = "db";$/;"	v	language:PHP
+hours	/home/alec/bin/timewarrior-custom.py	/^hours = (total_secs \/\/ 3600)$/;"	v	language:Python
+HTMLDOC	/home/alec/bin/tig-2.5.1/Makefile	/^HTMLDOC = doc\/tig.1.html doc\/tigrc.5.html doc\/manual.html README.html INSTALL.html NEWS.html$/;"	m	language:Make
+i	/home/alec/bin/vimwiki-diary-template.py	/^i = 0$/;"	v	language:Python
+include_path	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^$include_path = '.'           . PATH_SEPARATOR .$/;"	v	language:PHP
+is_open	/home/alec/bin/timew-report/timewreport/interval.py	/^    def is_open(self):$/;"	m	language:Python	class:TimeWarriorInterval
+js	/home/alec/www/ATN/web/themes/custom/atn_theme/gulpfile.js	/^function js () {$/;"	f	language:JavaScript
+kernel_name	/home/alec/bin/tig-2.5.1/Makefile	/^kernel_name := $(shell sh -c 'uname -s 2>\/dev\/null || echo unknown')$/;"	m	language:Make
+LCOV	/home/alec/bin/tig-2.5.1/Makefile	/^LCOV ?= lcov$/;"	m	language:Make
+LDFLAGS	/home/alec/bin/tig-2.5.1/Makefile	/^LDFLAGS ?= $(TIG_LDFLAGS)$/;"	m	language:Make
+LDLIBS	/home/alec/bin/tig-2.5.1/Makefile	/^LDLIBS ?= $(TIG_NCURSES) $(TIG_LDLIBS)$/;"	m	language:Make
+length	/home/alec/bin/vimwiki-diary-template.py	/^length = len(date)$/;"	v	language:Python
+line	/home/alec/bin/add-task-to-diary.py	/^            line = line + newline$/;"	v	language:Python
+line	/home/alec/bin/vimwiki-diary-template.py	/^                line = '  ' + line$/;"	v	language:Python
+ListToggleCheckBox	/home/alec/.vimrc	/^command! ListToggleCheckBox :call ListToggleCheckBox()$/;"	c	language:Vim
+ListToggleCheckBox	/home/alec/.vimrc	/^fun! ListToggleCheckBox()$/;"	f	language:Vim
+lsss	/home/alec/.zshrc	/^function lsss { cols=$(tput cols) && fold -w $cols -s "$@" | less }$/;"	f	language:Sh
+MAKE_TEST_OPTS	/home/alec/bin/tig-2.5.1/Makefile	/^export MAKE_TEST_OPTS = no-indent$/;"	m	language:Make
+MAKE_TEST_OPTS	/home/alec/bin/tig-2.5.1/Makefile	/^export MAKE_TEST_OPTS =$/;"	m	language:Make
+mandir	/home/alec/bin/tig-2.5.1/Makefile	/^mandir ?= $(datarootdir)\/man$/;"	m	language:Make
+MANDOC	/home/alec/bin/tig-2.5.1/Makefile	/^MANDOC	= doc\/tig.1 doc\/tigrc.5 doc\/tigmanual.7$/;"	m	language:Make
+mapleader	/home/alec/.vimrc	/^let mapleader = " "$/;"	v	language:Vim
+max_width	/home/alec/bin/timewarrior-show-all-time.py	/^        max_width = len(tag)$/;"	v	language:Python
+max_width	/home/alec/bin/timewarrior-show-all-time.py	/^max_width = len('Total')$/;"	v	language:Python
+memLimit	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^$memLimit       = (int) $memLimitString;$/;"	v	language:PHP
+memLimitString	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^$memLimitString = trim(ini_get('memory_limit'));$/;"	v	language:PHP
+memLimitUnit	/home/alec/www/ATN/web/sites/default/civicrm.settings.php	/^$memLimitUnit   = strtolower(substr($memLimitString, -1));$/;"	v	language:PHP
+mins	/home/alec/bin/timewarrior-custom.py	/^mins = (total_secs \/\/ 60) % 60$/;"	v	language:Python
+mkcd	/home/alec/.zshrc	/^mkcd () {$/;"	f	language:Sh
+newline	/home/alec/bin/add-task-to-diary.py	/^newline = "  * [ ] task #" + taskID + "\\n"$/;"	v	language:Python
+OBJS	/home/alec/bin/tig-2.5.1/Makefile	/^OBJS = $(sort $(TIG_OBJS) $(TEST_GRAPH_OBJS) $(DOC_GEN_OBJS))$/;"	m	language:Make
+output	/home/alec/bin/timewarrior-custom.py	/^        output = str(date.date()) + ' - ' + str(duration) + ' - ' + taglist$/;"	v	language:Python
+Overline	/home/alec/.vimrc	/^command! -range -nargs=0 Overline        call s:CombineSelection(<line1>, <line2>, '0305')$/;"	c	language:Vim
+pane_title	/home/alec/.zshrc	/^function pane_title() {$/;"	f	language:Sh
+parser	/home/alec/bin/timewarrior-custom.py	/^parser = TimeWarriorParser(sys.stdin)$/;"	v	language:Python
+parser	/home/alec/bin/timewarrior-show-all-time.py	/^parser = TimeWarriorParser(sys.stdin)$/;"	v	language:Python
+PATH	/home/alec/bin/tig-2.5.1/Makefile	/^$(TESTS): PATH := $(CURDIR)\/test\/tools:$(CURDIR)\/src:$(PATH)$/;"	m	language:Make
+php_htmlInStrings	/home/alec/.vimrc	/^let php_htmlInStrings = 1$/;"	v	language:Vim
+port	/home/alec/www/ATN/web/sites/default/settings.ddev.php	/^  $port = 32768;$/;"	v	language:PHP
+port	/home/alec/www/ATN/web/sites/default/settings.ddev.php	/^$port = 3306;$/;"	v	language:PHP
+prefix	/home/alec/bin/tig-2.5.1/Makefile	/^prefix ?= $(HOME)$/;"	m	language:Make
+prompt_command	/home/alec/custom-bashit.theme.bash	/^function prompt_command() {$/;"	f	language:Sh
+Q	/home/alec/.vimrc	/^map Q gq$/;"	m	language:Vim
+Q	/home/alec/bin/tig-2.5.1/Makefile	/^Q			= $(V:1=)$/;"	m	language:Make
+QUIET_ASCIIDOC	/home/alec/bin/tig-2.5.1/Makefile	/^QUIET_ASCIIDOC		= $(Q:@=@echo    '  ASCIIDOC  '$@;)$/;"	m	language:Make
+QUIET_CC	/home/alec/bin/tig-2.5.1/Makefile	/^QUIET_CC		= $(Q:@=@echo    '        CC  '$@;)$/;"	m	language:Make
+QUIET_DB2PDF	/home/alec/bin/tig-2.5.1/Makefile	/^QUIET_DB2PDF		= $(Q:@=@echo    '    DB2PDF  '$@;)$/;"	m	language:Make
+QUIET_GEN	/home/alec/bin/tig-2.5.1/Makefile	/^QUIET_GEN		= $(Q:@=@echo    '       GEN  '$@;)$/;"	m	language:Make
+QUIET_GENHTML	/home/alec/bin/tig-2.5.1/Makefile	/^QUIET_GENHTML		= $(Q:@=@echo    '   GENHTML  '$@;)$/;"	m	language:Make
+QUIET_INSTALL	/home/alec/bin/tig-2.5.1/Makefile	/^QUIET_INSTALL		= $(Q:@=@printf  '   INSTALL  ';)$/;"	m	language:Make
+QUIET_INSTALL_EACH	/home/alec/bin/tig-2.5.1/Makefile	/^QUIET_INSTALL_EACH	= $(Q:@=printf   '   INSTALL  ';)$/;"	m	language:Make
+QUIET_LCOV	/home/alec/bin/tig-2.5.1/Makefile	/^QUIET_LCOV		= $(Q:@=@echo    '      LCOV  '$@;)$/;"	m	language:Make
+QUIET_LINK	/home/alec/bin/tig-2.5.1/Makefile	/^QUIET_LINK		= $(Q:@=@echo    '      LINK  '$@;)$/;"	m	language:Make
+QUIET_SUMMARY	/home/alec/bin/tig-2.5.1/Makefile	/^QUIET_SUMMARY		= $(Q:@=@printf  '   SUMMARY  ';)$/;"	m	language:Make
+QUIET_TEST	/home/alec/bin/tig-2.5.1/Makefile	/^QUIET_TEST		= $(Q:@=@echo    '      TEST  '$@;)$/;"	m	language:Make
+QUIET_UNINSTALL	/home/alec/bin/tig-2.5.1/Makefile	/^QUIET_UNINSTALL		= $(Q:@=@printf  ' UNINSTALL  ';)$/;"	m	language:Make
+QUIET_UNINSTALL_EACH	/home/alec/bin/tig-2.5.1/Makefile	/^QUIET_UNINSTALL_EACH	= $(Q:@=printf   ' UNINSTALL  ';)$/;"	m	language:Make
+QUIET_XMLTO	/home/alec/bin/tig-2.5.1/Makefile	/^QUIET_XMLTO		= $(Q:@=@echo    '     XMLTO  '$@;)$/;"	m	language:Make
+RPM_RELEASE	/home/alec/bin/tig-2.5.1/Makefile	/^RPM_RELEASE = $(word 2,$(RPM_VERLIST))$(if $(WTDIRTY),.dirty)$/;"	m	language:Make
+RPM_VERLIST	/home/alec/bin/tig-2.5.1/Makefile	/^RPM_VERLIST = $(filter-out g% dirty,$(subst -, ,$(VERSION))) 0$/;"	m	language:Make
+RPM_VERSION	/home/alec/bin/tig-2.5.1/Makefile	/^RPM_VERSION = $(word 1,$(RPM_VERLIST))$/;"	m	language:Make
+secs	/home/alec/bin/timewarrior-custom.py	/^secs = total_secs % 60$/;"	v	language:Python
+SED	/home/alec/bin/tig-2.5.1/Makefile	/^SED ?= gsed$/;"	m	language:Make
+SED	/home/alec/bin/tig-2.5.1/Makefile	/^SED ?= sed$/;"	m	language:Make
+sedall	/home/alec/.dotfiles/remote-servers/bashrc	/^sedall() {$/;"	f	language:Sh
+sep	/home/alec/bin/timewarrior-custom.py	/^        sep = ', '$/;"	v	language:Python
+serve	/home/alec/www/ATN/web/themes/custom/atn_theme/gulpfile.js	/^function serve () {$/;"	f	language:JavaScript
+SkipTaskComments	/home/alec/.vimrc	/^	augroup SkipTaskComments$/;"	a	language:Vim
+Strikethrough	/home/alec/.vimrc	/^command! -range -nargs=0 Strikethrough   call s:CombineSelection(<line1>, <line2>, '0336')$/;"	c	language:Vim
+styles	/home/alec/www/ATN/web/themes/custom/atn_theme/gulpfile.js	/^function styles () {$/;"	f	language:JavaScript
+sysconfdir	/home/alec/bin/tig-2.5.1/Makefile	/^sysconfdir ?= $(prefix)\/etc$/;"	m	language:Make
+taglist	/home/alec/bin/timewarrior-custom.py	/^        taglist = sep.join(tags)$/;"	v	language:Python
+tags	/home/alec/bin/timewarrior-custom.py	/^    tags = interval.get_tags()$/;"	v	language:Python
+tags	/home/alec/bin/timewarrior-custom.py	/^tags = ''$/;"	v	language:Python
+TAR	/home/alec/bin/tig-2.5.1/Makefile	/^TAR ?= gtar$/;"	m	language:Make
+TAR	/home/alec/bin/tig-2.5.1/Makefile	/^TAR ?= tar$/;"	m	language:Make
+TARNAME	/home/alec/bin/tig-2.5.1/Makefile	/^TARNAME	= tig-$(RPM_VERSION)$/;"	m	language:Make
+TARNAME	/home/alec/bin/tig-2.5.1/Makefile	/^TARNAME	= tig-$(RPM_VERSION)-$(RPM_RELEASE)$/;"	m	language:Make
+taskID	/home/alec/bin/add-task-to-diary.py	/^taskID = sys.argv[1]$/;"	v	language:Python
+tasksDue	/home/alec/bin/vimwiki-diary-template.py	/^tasksDue = tw.tasks.filter(status='pending', due__before='tomorrow')$/;"	v	language:Python
+TaskSearch	/home/alec/.vimrc	/^command! TaskSearch :call TaskSearch()$/;"	c	language:Vim
+TaskSearch	/home/alec/.vimrc	/^function TaskSearch()$/;"	f	language:Vim
+templates	/home/alec/.vimrc	/^	augroup templates$/;"	a	language:Vim
+TESTS	/home/alec/bin/tig-2.5.1/Makefile	/^TESTS  = $(sort $(shell find test -type f -name '*-test'))$/;"	m	language:Make
+TESTS_TODO	/home/alec/bin/tig-2.5.1/Makefile	/^TESTS_TODO = $(sort $(shell find test -type f -name '*-test' -exec grep -l '\\(test_todo\\|-todo=\\)' {} \\+))$/;"	m	language:Make
+TEST_GRAPH_OBJS	/home/alec/bin/tig-2.5.1/Makefile	/^TEST_GRAPH_OBJS = test\/tools\/test-graph.o src\/string.o src\/util.o src\/io.o $(GRAPH_OBJS) $(COMPAT_OBJS)$/;"	m	language:Make
+TIG_ADDRESS_SANITIZER_ENABLED	/home/alec/bin/tig-2.5.1/Makefile	/^test-address-sanitizer: export TIG_ADDRESS_SANITIZER_ENABLED=yes$/;"	m	language:Make
+TIG_NCURSES	/home/alec/bin/tig-2.5.1/Makefile	/^TIG_NCURSES ?= -lcurses$/;"	m	language:Make
+TIG_OBJS	/home/alec/bin/tig-2.5.1/Makefile	/^TIG_OBJS = \\$/;"	m	language:Make
+time	/home/alec/bin/timewarrior-custom.py	/^time = hours + decimal$/;"	v	language:Python
+TimeWarriorInterval	/home/alec/bin/timew-report/timewreport/interval.py	/^class TimeWarriorInterval(object):$/;"	c	language:Python
+todaysTasks	/home/alec/bin/vimwiki-diary-template.py	/^todaysTasks = ''$/;"	v	language:Python
+TOOLS	/home/alec/bin/tig-2.5.1/Makefile	/^TOOLS	= test\/tools\/test-graph tools\/doc-gen$/;"	m	language:Make
+total	/home/alec/bin/timewarrior-custom.py	/^        total = total + duration$/;"	v	language:Python
+total	/home/alec/bin/timewarrior-custom.py	/^total = datetime.timedelta()$/;"	v	language:Python
+totals	/home/alec/bin/timewarrior-show-all-time.py	/^totals = dict()$/;"	v	language:Python
+total_secs	/home/alec/bin/timewarrior-custom.py	/^total_secs = int(total.total_seconds())$/;"	v	language:Python
+tracked	/home/alec/bin/timewarrior-show-all-time.py	/^    tracked = interval.get_duration()$/;"	v	language:Python
+tw	/home/alec/bin/vimwiki-diary-template.py	/^tw = TaskWarrior('\/home\/alec\/.task')$/;"	v	language:Python
+TXTDOC	/home/alec/bin/tig-2.5.1/Makefile	/^TXTDOC	= doc\/tig.1.adoc doc\/tigrc.5.adoc doc\/manual.adoc NEWS.adoc README.adoc INSTALL.adoc test\/API.adoc$/;"	m	language:Make
+uline	/home/alec/bin/vimwiki-diary-template.py	/^uline = '--'$/;"	v	language:Python
+Underline	/home/alec/.vimrc	/^command! -range -nargs=0 Underline       call s:CombineSelection(<line1>, <line2>, '0332')$/;"	c	language:Vim
+V	/home/alec/bin/tig-2.5.1/Makefile	/^V			= @$/;"	m	language:Make
+VERSION	/home/alec/bin/tig-2.5.1/Makefile	/^VERSION	= $(COMMIT)$(WTDIRTY)$/;"	m	language:Make
+VERSION	/home/alec/bin/tig-2.5.1/Makefile	/^VERSION	= 2.5.1$/;"	m	language:Make
+VERSION	/home/alec/bin/tig-2.5.1/Makefile	/^VERSION = $(DIST_VERSION)$/;"	m	language:Make
+vimrcEx	/home/alec/.dotfiles/remote-servers/remote-vim/vimrc	/^  augroup vimrcEx$/;"	a	language:Vim
+vimrcEx	/home/alec/.vimrc	/^  augroup vimrcEx$/;"	a	language:Vim
+vimwikigroup	/home/alec/.vimrc	/^  augroup vimwikigroup$/;"	a	language:Vim
+wiki	/home/alec/.vimrc	/^let wiki = {}$/;"	v	language:Vim
+wiki	/home/alec/.vimrc	/^let wiki.nested_syntaxes = {'ruby': 'ruby', 'python': 'python', 'c++': 'cpp', 'sh': 'sh', 'php': 'php', 'javascript': 'js'}$/;"	v	language:Vim
+Wiki Index	/home/alec/vimwiki/index.wiki	/^Wiki Index$/;"	c	language:Markdown
+WTDIRTY	/home/alec/bin/tig-2.5.1/Makefile	/^WTDIRTY	= $(if $(shell git diff-index HEAD 2>\/dev\/null),-dirty)$/;"	m	language:Make
+XMLTO	/home/alec/bin/tig-2.5.1/Makefile	/^XMLTO ?= xmlto$/;"	m	language:Make
+yesJournal	/home/alec/bin/vimwiki-diary-template.py	/^yesJournal = '\/home\/alec\/Documents\/wiki\/diary\/' + datetime.strftime(datetime.now() - timedelta(1), '%Y-%m-%d') + '.mkd'$/;"	v	language:Python
+yesNotes	/home/alec/bin/vimwiki-diary-template.py	/^                yesNotes = yesNotes + line$/;"	v	language:Python
+yesNotes	/home/alec/bin/vimwiki-diary-template.py	/^yesNotes = ''$/;"	v	language:Python
+_custom_ui_colorscheme	/home/alec/.ptpython/config.py	/^_custom_ui_colorscheme = {$/;"	v	language:Python
+__all__	/home/alec/.ptpython/config.py	/^__all__ = ("configure",)$/;"	v	language:Python
+__eq__	/home/alec/bin/timew-report/timewreport/interval.py	/^    def __eq__(self, other):$/;"	m	language:Python	class:TimeWarriorInterval	file:
+__get_local_datetime	/home/alec/bin/timew-report/timewreport/interval.py	/^    def __get_local_datetime(self, datetime_string):$/;"	m	language:Python	class:TimeWarriorInterval	file:
+__hash__	/home/alec/bin/timew-report/timewreport/interval.py	/^    def __hash__(self):$/;"	m	language:Python	class:TimeWarriorInterval	file:
+__init__	/home/alec/bin/timew-report/timewreport/interval.py	/^    def __init__(self, start, end, tags):$/;"	m	language:Python	class:TimeWarriorInterval
+{Previous-Mapping}	/home/alec/.dotfiles/remote-servers/remote-vim/vimrc	/^nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>$/;"	m	language:Vim
+{Previous-Mapping}	/home/alec/.vimrc	/^nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>$/;"	m	language:Vim

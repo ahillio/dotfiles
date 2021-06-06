@@ -1,0 +1,8 @@
+set editing-mode vi
+set vi-ins-mode-string \1\e[34;1m\2└──[ins] \1\e[0m\2
+set vi-cmd-mode-string \1\e[33;1m\2└──[vi-mode] \1\e[0m\2
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+#"\M-OA": history-search-backward
+#"\M-OB": history-search-forward
+set completion-ignore-case on
