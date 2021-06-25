@@ -53,7 +53,9 @@ export EDITOR=vim
 
 export HISTTIMEFORMAT="%y/%m/%d %T "
 
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/bin:/var/www/html/bin:$PATH"
+
+export DRUSH_OPTIONS_URI="$DDEV_PROJECT.ddev.site"
 
 #source /usr/share/bash-completion/completions/git
 source /etc/bash_completion.d/git
@@ -99,7 +101,7 @@ function color_my_prompt {
   fi
    
   # Build the PS1 (Prompt String)
-  PS1="\n$__client $__cur_location$__git_branch_color$__git_branch \n$__user_input_color "
+  PS1="\nDDEV:$__client $__cur_location$__git_branch_color$__git_branch \n$__user_input_color "
 }
  
 # configure PROMPT_COMMAND which is executed each time before PS1

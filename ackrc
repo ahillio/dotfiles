@@ -12,3 +12,6 @@
 # --type-add php:module,inc,install
 
 --smart-case
+
+# show line numbers
+-H

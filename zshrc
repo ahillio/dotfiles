@@ -1,3 +1,8 @@
+# debug
+#set -x
+# end debug
+
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -46,16 +51,18 @@ POWERLEVEL9K_VI_COMMAND_MODE_STRING="VI-Mode"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode history-substring-search tmuxinator)
+plugins=(git vi-mode history-substring-search)
 
 # User configuration
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/alec/.shellscripts:/home/alec/bin"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/alec/code/bin"
 export PATH="$HOME/.composer/vendor/bin:/home/alec/.local/bin:$PATH"
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
 # export MANPATH="/usr/local/man:$MANPATH"
 
+# If using oh-my-zsh turn off the damn update check!
+DISABLE_AUTO_UPDATE="true"
 source $ZSH/oh-my-zsh.sh
 # source ~/bin/tmuxinator.zsh
 # source /usr/local/src/drush/drush.complete.sh
@@ -138,6 +145,10 @@ source ~/.dotfiles/tmuxinator.zsh
 # so disable the terminal scroll lock setting:
 stty -ixon
 
+# `ls` autocomplete should not give files as options, only directories
+#      (why would I want to `ls some-dir/filename`?
+compdef _dirs ls
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -157,20 +168,29 @@ alias xclip='xclip -sel clip'
 alias ical='khal interactive'
 cal() {
   if [ $# -eq 0 ]; then
-    ncal -bM
+   clear; ncal -b3M; khal list
   else
-    if [ $1 = '-c' ]; then
+    if [ $1 = '-c' ] || [ $1 = 'c' ] || [ $1 = 'cal' ]; then
       khal calendar
-    elif [ $1 = '-i' ]; then
-      khal interactive
+    elif [ $1 = '-l' ] || [ $1 = 'l' ]; then
+      khal list
+    elif [ $1 = '-i' ] || [ $1 = 'i' ]; then
+      khal interactive; clear; ncal -b3M; khal list
+#    elif [ $1 = '-m' ] || [ $1 = 'm']; then
+#      ncal -bM
     else
       khal $@
     fi
   fi
 }
+alias calendar="ncal -bM"
+alias calender="ncal -bM"
+alias calndr="ncal -bM"
+
 alias c='clear'
 alias cl='clear && ls -1'
 
+alias ga='git add .'
 alias gc='git commit'
 alias gcm='git commit -m'
 alias gcp='git cherry-pick'
@@ -218,17 +238,28 @@ alias lsfa='find . -maxdepth 1 -type f | sed "s|\./||"'
 alias ltr='ls -ltr'
 alias ll='ls -lh'
 alias lla='ls -la'
-alias ls='ls --color -h --group-directories-first'
-alias l='ls -1'
+#alias ls='ls --color -h --group-directories-first'
+myls() {
+if [ $# -eq 0 ]; then
+  nnn -e
+else
+  ls $@
+fi
+}
+#alias ls='myls'
+alias l='nnn -e'
 
 alias o='xdg-open'
 
 sedall() {
-  [ "$#" = 2 ] || { echo Two arguments needed; return 9; }
-  find . -type f -exec sed -i "s|$1|$2|g" {} \;
-}
 # sed through all files in current directory
 # use like: `sedall find replace`
+  [ "$#" = 2 ] || { echo Two arguments needed; return 9; }
+  # @TODO improve performance:
+  #  first grep for $1 sting, then get those list of filenames, and perform sed on those
+  #  `ack -lQ` -l prints just filename, -Q disables regex treats metacharacters as literals
+  find . -type f -exec sed -i "s|$1|$2|g" {} \;
+}
 
 mkcd() {
   mkdir $1 && cd $1
@@ -236,13 +267,24 @@ mkcd() {
 alias flength="find . -maxdepth 1 -type f -exec wc -l {} \; | sort -n | sed 's| ./| |g'"
 
 alias killmux='tmux kill-session -t'
+alias kmux='tmux kill-session -t'
 alias dmux='tmux kill-session -t'
 alias delmux='tmux kill-session -t'
 alias muxa='tmux a -t'
 alias mxo='tmux a -t 0'
 alias mx0='tmux a -t 0'
-alias mx='tmux a -t 1'
+alias mx='tmuxinator start amux'
+alias mxa='tmux a -t 0'
 alias lmx='tmux ls'
+alias amux='mux amux'
+mymux() {
+if [ $# -eq 0 ]; then
+  mux amux
+else
+  tmux $@
+fi
+}
+#alias tmux='mymux'
 
 alias repl='psysh'
 alias showz='watch -n 1 -c "$1"'
@@ -258,32 +300,65 @@ alias timlog='timew :id summary 2020-01-01 - tomorrow'
 alias tnt='tasknote'
 
 alias dot='cd ~/.dotfiles && ls'
-alias bin='cd ~/bin && ls'
+alias bin='cd ~/code/bin && ls'
 alias work='cd ~/Work && ls'
 alias down='cd ~/Downloads'
 alias doc='cd ~/Documents'
 
-alias spot='snap run spotify &'
-alias chrom='snap run chromium &'
+alias linux="hostnamectl"
+alias kernel="uname -r"
+#alias battery="acpi"
+alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|to\ full|percentage"'
+alias bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|to\ full|percentage"'
 
-alias sysins='vi ~/bin/system-install.sh'
+alias bank="pass -c money/bank"
+
+alias sysins='vi ~/code/bin/system-install.sh'
+
+alias mkpdf="mkdpdf.sh"
+
 alias vw='vi ~/Documents/wiki/index.mkd'
 alias wki='vi ~/Documents/wiki/index.mkd'
 alias wiki='vi ~/Documents/wiki/index.mkd'
 alias techwiki='vi ~/Documents/wiki/tech/index.mkd'
 alias tw='vi ~/Documents/wiki/tech/index.mkd'
 alias twiki='vi ~/Documents/wiki/tech/index.mkd'
-alias wikitags="grep --color=always -r -e '^:\S*:$' ~/Documents/wiki/*.mkd ~/Documents/wiki/diary/*.mkd | cut -d '/' -f 6,7  "
-alias wikitaglist="wikitags | sed -r 's|.*(:[a-z_]*:)|\1|g' | sort -u"
+alias wikitaglist="wikitags"
+# alias wikitags="grep --color=always -r -e '^:\S*:$' ~/Documents/wiki/*.mkd ~/Documents/wiki/diary/*.mkd | cut -d '/' -f 6,7  "
 
 #alias dreams='dreams.py | less -i'
 #alias dreams="dreams.py | vim - -c 'set nomodifiable' -c 'set ft=markdown' '+norm Go'"
 # @TODO perhaps source a vimrc via `-u` that makes `q` run `:q!`
 #alias dreams="dreams.py | view -"
 #alias dreams="dreams.py | vim - -c 'set ft=none' '+norm Go'"
-alias dreams="dreams.py | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=none' '+norm Go'"
+alias dreams="diary.py Dreams | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=vimwiki' '+norm Go'"
+alias gratitude="diary.py Gratitudes | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=vimwiki' '+norm Go'"
+alias gratitudes="diary.py Gratitudes | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=vimwiki' '+norm Go'"
+alias struggle="diary.py Struggles | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=vimwiki' '+norm Go'"
+alias struggles="diary.py Struggles | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=vimwiki' '+norm Go'"
+alias challenges="diary.py Struggles | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=vimwiki' '+norm Go'"
+alias reflections="diary.py Reflections | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=vimwiki' '+norm Go'"
+alias accomplishments="diary.py Accomplishments | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=vimwiki' '+norm Go'"
+alias forgiveness="diary.py Forgiveness | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=vimwiki' '+norm Go'"
+wikitags() {
+  wikitaglist.sh $1 | vim - -u /home/alec/.dotfiles/pager.vimrc
+  #wikitaglist.sh $1 | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set nomodifiable' 'set readonly'
+}
+techtag() {
+  techtag.py $1 | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=vimwiki' '+norm Go'
+}
+tagshow() {
+  tagshow.py $1 | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=vimwiki' '+norm Go'
+}
+alias tags="tagshow"
+alias showtag="tagshow"
+alias bol="tagshow BoL"
 
-alias fb='fb-messenger-cli'
+alias vip="vit +personal"
+alias vitp="vit +personal"
+
+#alias fb='fb-messenger-cli'
+alias fb="pass -c social/facebook"
 alias mutt='neomutt'
 
 contacts() {  echo "\`khard\` will list all contacts.\n\`khard edit contact name\` will edit khard file for 'contact name'." }
@@ -292,13 +367,22 @@ contacts() {  echo "\`khard\` will list all contacts.\n\`khard edit contact name
 fpath=(~/.stripe $fpath)
 autoload -Uz compinit && compinit -i 
 
-function stripekey { APIKEY=$(cat ~/.passwords/stripe-live-sk); stripe $@ --api-key=$APIKEY --live }
-function stripe-invoices { APIKEY=$(cat ~/.passwords/stripe-live-sk); curl https://api.stripe.com/v1/invoices -u $APIKEY: -G | jq -C '.data[] | {invoice_id: .id, client: .customer_name, date: .date | strftime("%Y-%m-%d"), amount: .total, status: .status} | .amount = "$" + (.amount/100|tostring)' }
-function stripe-balance { APIKEY=$(cat ~/.passwords/stripe-live-sk); stripe balance retrieve --api-key=$APIKEY }
-function stripe-payout { APIKEY=$(cat ~/.passwords/stripe-live-sk); stripe payouts create --amount=$1 --currency=usd --api-key=$APIKEY }
-function stripe-payouts { APIKEY=$(cat ~/.passwords/stripe-live-sk); stripe payouts list --limit=4 --api-key=$APIKEY | jq '.data[] | {dateCreated: .created | strftime("%Y-%m-%d"), status: .status, depositDate: .arrival_date | strftime("%Y-%m-%d"), amount: .amount,} | .amount = "$" + (.amount/100|tostring)' }
-function stripe-logs { APIKEY=$(cat ~/.passwords/stripe-live-sk); stripe logs tail --api-key=$APIKEY }
-function stripe-customers { APIKEY=$(cat ~/.passwords/stripe-live-sk); stripe customers list --api-key=$APIKEY | jq -C '.data[] | {id: .id, name: .name}'}
+function stripekey { APIKEY=$(cat ~/.password-store/stripe-live-sk); stripe $@ --api-key=$APIKEY }
+function stripe-invoices { APIKEY=$(cat ~/.password-store/stripe-live-sk); curl https://api.stripe.com/v1/invoices -u $APIKEY: -G | jq -C '[.data[] | {invoice_id: .id, client: .customer_name, date: .date | strftime("%Y-%m-%d"), amount: .total, status: .status} | .amount = "$" + (.amount/100|tostring)] | sort_by(.date)' }
+function stripe-balance { APIKEY=$(cat ~/.password-store/stripe-live-sk); stripe balance retrieve --api-key=$APIKEY }
+function stripe-payouts { APIKEY=$(cat ~/.password-store/stripe-live-sk); stripe payouts list --limit=4 --api-key=$APIKEY | jq '.data[] | {dateCreated: .created | strftime("%Y-%m-%d"), status: .status, depositDate: .arrival_date | strftime("%Y-%m-%d"), amount: .amount,} | .amount = "$" + (.amount/100|tostring)' }
+function stripe-payout { APIKEY=$(cat ~/.password-store/stripe-live-sk); stripe payouts create --amount=$1 --currency=usd --api-key=$APIKEY }
+# @TODO create function for **INSTANT** payouts option
+# https://stripe.com/docs/payouts#instant-payouts
+# curl https://api.stripe.com/v1/payouts \
+#   -u sk_test_VqsaGY0UGjQ8NjldtJcnH7w5: \
+#   -d amount=1000 \
+#   -d currency=usd \
+#   -d method=instant \
+#   -d destination=card_xyz
+alias stripe-transfer='stripe-payout'
+function stripe-logs { APIKEY=$(cat ~/.password-store/stripe-live-sk); stripe logs tail --api-key=$APIKEY }
+function stripe-customers { APIKEY=$(cat ~/.password-store/stripe-live-sk); stripe customers list --api-key=$APIKEY | jq -C '.data[] | {id: .id, name: .name}'}
 
 # jq filters use "select" as keyword:
 # | select( .<key> | contains("<value>")) 
@@ -306,16 +390,22 @@ function stripe-customers { APIKEY=$(cat ~/.passwords/stripe-live-sk); stripe cu
 
 
 # NVM
+# @TODO https://www.ioannispoulakas.com/2020/02/22/how-to-speed-up-shell-load-while-using-nvm/
+# re-enable NVM please
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-# Change Konsole colorscheme
-# Breeze | SolarizedLight
+
+### Change Konsole colorscheme###
+
+# Breeze | SolarizedLight???
 bgd() {
   switch-term-color "colors=Breeze"
+  # @TODO: update `khal` colorscheme
 }
 bgl() {
   switch-term-color "colors=SolarizedLight"
+  # @TODO: update `khal` colorscheme
 }
 switch-term-color() {
   arg="${1:-colors=Tomorrow}"
@@ -327,7 +417,30 @@ switch-term-color() {
   fi
 }
 
+
+
+### End of Konsole colorscheme switching ###
+
 fnd() {
   find . -iname "*$1*"
 }
+# set options for less per https://www.topbug.net/blog/2016/09/27/make-gnu-less-more-powerful/
+#export LESS='--ignore-case --status-column --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=2 --window=-4'
+##export LESS='--quit-if-one-screen --ignore-case --status-column --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=2 --no-init --window=-4'
+## Set colors for less. Borrowed from https://wiki.archlinux.org/index.php/Color_output_in_console#less .
+#export LESS_TERMCAP_mb=$'\E[1;31m'     # begin bold
+#export LESS_TERMCAP_md=$'\E[1;36m'     # begin blink
+#export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
+#export LESS_TERMCAP_so=$'\E[01;44;33m' # begin reverse video
+#export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
+#export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
+#export LESS_TERMCAP_ue=$'\E[0m'        # reset underline 
+## for ~/.lessfilter to work:
+#eval "$(lesspipe)"
 
+### NNN is configured through environment variables ###
+
+
+# debug
+#set +x
+# end debug

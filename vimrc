@@ -46,6 +46,17 @@ map <Leader>yf :let @+ = expand("%")<cr>
 map <Leader>bgl :set background=light <Enter>
 map <Leader>bgd :set background=dark <Enter>
 
+" Insert new line without entering insert mode
+nnoremap <Leader>o o<Esc>0"_Dk
+nnoremap <Leader>O O<Esc>0"_Dj
+
+" Enhance searching for next/prev matches by centering it `zz`
+nnoremap n nzz
+nnoremap N Nzz
+
+" Switch to previous buffer
+nnoremap <Leader>bb :b# <Enter>
+
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
@@ -121,6 +132,7 @@ if has("autocmd")
     autocmd!
     " automatically update links on read diary
     autocmd BufRead,BufNewFile diary.mkd VimwikiDiaryGenerateLinks
+    " autocmd BufRead,BufNewFile ecological-technologies.mkd EcotechGenerateLinks
   augroup end
   " End Vimiki Diary
 
@@ -158,6 +170,7 @@ endif
 " colorscheme jellybeans
 
 set cursorline
+set cursorlineopt=line
 
 " set nowrap
 set wrap linebreak
@@ -255,8 +268,15 @@ let g:solarized_termcolors = 256
 set term=screen-256color
 
 syntax enable
+"@TODO use shell variable to set background light/dark
+"shell alias `bgl` & `bgd` should also set shell variables && bonus: `tmux
+"send-keys` to all vim instances to run `:set bg=` !!!
+"set background=light
 set background=dark
 colorscheme solarized
+" the seti theme, if I do `:set background=light` looks terrible, and then if
+" I do `:set background=dark` it still looks terrible...why?
+"colorscheme seti
 
 set clipboard=unnamed
 
@@ -316,7 +336,7 @@ let g:ycm_filetype_specific_completion_to_disable = {
 " Ultisnips
 " Trigger configuration. You need to change this to something else than <tab>
 " if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="~"
+let g:UltiSnipsExpandTrigger="<Shift-Enter>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
@@ -457,8 +477,7 @@ autocmd BufRead,BufNewFile *.task,*.mkd,*.txt set nofoldenable
 "let g:vimwiki_list = [wiki_1, wiki_2, wiki_3]
 
 let g:vimwiki_list = [{'path': '~/Documents/wiki/', 'syntax': 'markdown', 'ext': '.mkd'},
-                     \ {'path': '~/Documents/wiki/tech/', 'syntax': 'markdown', 'ext': '.mkd'},
-                     \ {'path': '~/Documents/wiki/human-ecology/', 'syntax': 'markdown', 'ext': '.mkd'}]
+                     \ {'path': '~/Documents/wiki/tech/', 'syntax': 'markdown', 'ext': '.mkd'}]
 
 :call vimwiki#vars#init()
 
@@ -476,6 +495,7 @@ let g:vimwiki_hl_headers = 1
 "let wiki.auto_tags = 1
 
 fun! ListToggleCheckBox()
+  " @TODO work with numbered checklists :/
   " @TODO get and save current cursor position then move to cursor position at end of function
     let rx_bullets = '^\(\s*[-*]\+\s*\)'
     let rx_empty_checkbox = '\(\s*\[ \?\]\+\s*\)'
@@ -500,6 +520,10 @@ imap <C-e> <esc>A
 nnoremap <leader>dp :VimwikiDiaryPrevDay <Enter>
 nnoremap <leader>dn :VimwikiDiaryNextDay <Enter>
 
+nnoremap <leader>dj :vi /home/alec/Documents/wiki/diary/journal.mkd <Enter>
+nnoremap <leader>dl :vi /home/alec/Documents/wiki/diary/letters/letters-index.mkd <Enter>
+nnoremap <leader>dm :vi /home/alec/Documents/wiki/diary/make-stuff.mkd <Enter>
+
 let g:taskwiki_sort_orders={"U": "urgency-"}
 
 " ledger bookkeeping config:
@@ -509,8 +533,20 @@ let g:ledger_detailed_first = 1
 let g:ledger_fold_blanks = 0
 let g:ledger_bin = 'ledger'
 
-" delete current file (useful for outdated tasknote files and other less common scenarios)
-nnoremap <leader>dd. :call delete(expand('%')) \| bdelete! <Enter>
+
+function EcotechGenerateLinks()
+  let fileList = globpath('~/Documents/wiki/human-ecology', 'ecotech_*.mkd', 1, 1)
+  echo 'hello'
+  for fileName in fileList
+    substitute(fileName, '/home/alec/Documents/wiki/', 'newtext', '')
+                         "/home/alec/Documents/wiki
+    echo fileName
+  endfor
+endfunction
+command! EcotechGenerateLinks :call EcotechGenerateLinks()
+
+" reload vimrc file
+nnoremap <leader>u :source ~/.vimrc <Enter>
 
 "
 nnoremap <leader>pas :vi ~/old-passwords/ahill.yml <Enter>
@@ -538,11 +574,56 @@ endfunction
 command! TaskSearch :call TaskSearch()
 nnoremap <leader>tn :TaskSearch <Enter>
 
+function TestPy()
+python3 << EOF
+print("Hello")
+EOF
+endfunction
+command! Hi :call TestPy()
+
+
+nmap <leader>mkd :set ft=vimwiki<CR>
+nmap <leader>nh :noh <Enter>
+nmap <leader>sp :set spell<CR>
+nmap <leader>nsp :set nospell<CR>
+nmap <leader>bd :bd <Enter>
+nmap <leader>db :bd <Enter>
+" delete current file (useful for outdated tasknote files and other less common scenarios)
+nnoremap <leader>dd. :call delete(expand('%')) \| bdelete! <Enter>
+
+nnoremap <C-q> <esc>:wqa<CR>
+
+" https://vi.stackexchange.com/questions/29105/how-to-turn-this-piped-bash-command-into-a-vim-map/29111#29111
+" turns...
+" A| B | C
+" Alpha | Beta | Gamma
+" 12 | 34.56 | 78.9 
+" ...into...
+" A       | B       | C
+" Alpha   | Beta    | Gamma
+" 12      | 34.56   | 78.9
+xnoremap <leader>t :!columnize.sh<CR>
+xnoremap <leader>T :'<,'>!sed -e 's/<Bar>/'$'\001''<Bar>/g' <Bar> column -t -s $'\001'<CR>
+
+" @TODO
+" fix italics
+"set t_ZH=^[[3m
+"set t_ZR=^[[23m
+hi! link markdownItalic Italic
+
+" Focus mode
+let g:focus_use_default_mapping = 0
+nmap <leader>foc <Plug>FocusModeToggle
+let g:focusmode_width = 72
+
 " keybinding docs
 "
 " Commands                        Mode
 " --------                        ----
+" map,  noremap,  unmap           Normal, Visual, Select, Operator-pending
 " nmap, nnoremap, nunmap          Normal mode
+" map!, noremap!, nmap!           Insert and Command-line
+" lmap, lnoremap, unmap           Insert, Command-line, Lang-Arg
 " imap, inoremap, iunmap          Insert and Replace mode
 " vmap, vnoremap, vunmap          Visual and Select mode
 " xmap, xnoremap, xunmap          Visual mode
