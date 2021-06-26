@@ -237,16 +237,22 @@ autocmd StdinReadPost * set nomodified
 nnoremap q :q!<CR>
 
 function DiaryTagBrowser()
-" @TODO needs logic to ensure this doesn't get called 
   let line = getline('.')
+  " are we in the tag-list or a tag report?  if line is only letters we're in tag-list...
+" @TODO needs better logic as a tag report could easily contain an
+" alphabetic-character-only line
+" use filenames instead
   if line =~ '^\(\a\)\{1,}$'
   "if match(line, '^\(\a\)\{1,}$') == 0
     let g:tag = line
-    w! /tmp/diary-tag-list.txt
+    "w! /tmp/diary-tag-list.txt
     enew | set ft=vimwiki
+    " generate tag report for the tag on the current line
     exe 'read !tagshow.py ' . line
+    " write tag report to temporary file
+    exe 'w! /tmp/wiki-tag-reports/' . line . '.mkd'
   else
-    w! /tmp/diary-tag-report.txt
+    "w! /tmp/diary-tag-report.txt
     ?^# \a\{6,9} \d\{2} \a\{3,} \d\{4}
     let line = getline('.')
     let diary = matchstr(line, '\(\d\{2}\) \(\a\{3,}\) \(\d\{4}\)')
@@ -280,29 +286,22 @@ function DiaryTagBrowser()
     endif
     let dln = matchstr(line, 'line.\d\{1,}')
     let g:dln = substitute(dln, 'line#', '', '',)
-    exe 'e ' . diary
-    ":dln
-    "search(g:tag)
-    "normal dln
-    "normal 45G
+    u "undo adding the newline at end of file (wtf)
+    exe 'e! ' . diary
+    "echo diary
     "echo g:dln
+    "echoerr
     exe "normal " . g:dln . "G"
     :normal zz
     :source ~/.vimrc
     set ft=vimwiki
-    "search('^# \a\{6,8} \d\{2} \a\{3,} \d\{4}', b)
-    "let diaryentry = line
-  " for next function, jumping to diary page...
-  " :help search for `b` (backwards) and other arguments like `c` to accept match at Cursor position
-  " search({pattern}, b)
-    "echo "not on a diaryTag"
-    "echo line
   endif
 endfunction
 command! DiaryTagBrowser : call DiaryTagBrowser()
 nnoremap <Enter> :DiaryTagBrowser <Enter>
 nnoremap <Backspace> :bd! <Enter>
 
+set nofixendofline "disable insertion of new line at end of file
 
 "set nomodifiable
 "set readonly

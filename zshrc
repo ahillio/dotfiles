@@ -341,13 +341,20 @@ alias reflections="diary.py Reflections | vim - -u /home/alec/.dotfiles/pager.vi
 alias accomplishments="diary.py Accomplishments | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=vimwiki' '+norm Go'"
 alias forgiveness="diary.py Forgiveness | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=vimwiki' '+norm Go'"
 wikitags() {
-  wikitaglist.sh $1 | vim - -u /home/alec/.dotfiles/pager.vimrc
+  wikitaglist.sh $1 > /tmp/wiki-tag-reports/list-of-tags.txt
+                  vim /tmp/wiki-tag-reports/list-of-tags.txt -u /home/alec/.dotfiles/pager.vimrc
   #wikitaglist.sh $1 | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set nomodifiable' 'set readonly'
 }
 techtag() {
   techtag.py $1 | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=vimwiki' '+norm Go'
 }
 tagshow() {
+  tagshow.py $1 > /tmp/wiki-tag-reports/$1.mkd; vi /tmp/wiki-tag-reports/$1.mkd -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=vimwiki' '+norm Go'
+              #vi /tmp/wiki-tag-reports/$1.mkd
+ #tagshow.py $1 > /tmp/wiki-tag-reports/$1.mkd; vi /tmp/wiki-tag-reports/$1.mkd
+ #tagshow.py $1 | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=vimwiki' '+norm Go'
+}
+oldtagshow() {
   tagshow.py $1 | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=vimwiki' '+norm Go'
 }
 alias tags="tagshow"
