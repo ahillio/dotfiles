@@ -43,9 +43,6 @@ map <Leader>fp :let @+ = expand("%")<cr>
 map <Leader>yf :let @+ = expand("%")<cr>
 "map <Leader>fp :let @" = expand("%")<cr>
 
-map <Leader>bgl :set background=light <Enter>
-map <Leader>bgd :set background=dark <Enter>
-
 " Insert new line without entering insert mode
 nnoremap <Leader>o o<Esc>0"_Dk
 nnoremap <Leader>O O<Esc>0"_Dj
