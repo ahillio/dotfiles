@@ -268,12 +268,47 @@ let g:solarized_termcolors = 256
 set term=screen-256color
 
 syntax enable
-"@TODO use shell variable to set background light/dark
-"shell alias `bgl` & `bgd` should also set shell variables && bonus: `tmux
-"send-keys` to all vim instances to run `:set bg=` !!!
-"set background=light
-set background=dark
 colorscheme solarized
+"function! Toggle_Light_Dark_Colorscheme()
+"    if system('tmux show-environment THEME')[0:9] == 'THEME=dark'
+"        :silent :!tmux set-environment THEME 'light'
+"        :silent :!tmux source-file ~/.tmux_light.conf
+"    else
+"        :silent :!tmux set-environment THEME 'dark'
+"        :silent :!tmux source-file ~/.tmux_dark.conf
+"    endif
+"    :call SetColorScheme()
+"endfunction
+
+function! SetColorScheme()
+    " check if tmux colorsheme is light or dark, and pick for vim accordingly
+    if system('tmux show-environment THEME')[0:9] == 'THEME=dark'
+        set background=dark
+        colo solarized
+    else
+        set background=light
+        colo solarized
+    endif
+endfunction
+call SetColorScheme()
+"autocmd FocusGained * :call SetColorScheme()
+"map <Leader>bgm :call Toggle_Light_Dark_Colorscheme()<cr>
+nmap <leader>vi :vi<cr>
+nmap <leader>bgd :set background=dark<cr>
+nmap <leader>bgl :set background=light<cr>
+
+"Vim can access shell variables, so the following line would be nonsensical
+"let BGM = system('echo $BACKGROUNDMODE')
+"but it demonstrates making a system call
+"debug tip that was useful here:
+":verbose set bg?
+"---
+"if $BACKGROUNDMODE == 'bgd'
+"  set background=dark
+"else 
+"  set background=light
+"endif
+"---
 " the seti theme, if I do `:set background=light` looks terrible, and then if
 " I do `:set background=dark` it still looks terrible...why?
 "colorscheme seti

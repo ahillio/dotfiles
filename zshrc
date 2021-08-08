@@ -404,15 +404,22 @@ export NVM_DIR="$HOME/.nvm"
 
 
 ### Change Konsole colorscheme###
-
+# default BackGroundMode is dark
+if [[ ! $(tmux show-environment | grep THEME) =~ 'THEME=light' ]]; then
+  tmux set-environment THEME dark
+fi
 # Breeze | SolarizedLight???
 bgd() {
   switch-term-color "colors=Breeze"
+  tmux set-environment THEME dark
   # @TODO: update `khal` colorscheme
+  #               `vit` colors
 }
 bgl() {
   switch-term-color "colors=SolarizedLight"
+  tmux set-environment THEME light
   # @TODO: update `khal` colorscheme
+  #               `vit` colors
 }
 switch-term-color() {
   arg="${1:-colors=Tomorrow}"
