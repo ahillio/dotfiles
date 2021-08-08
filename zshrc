@@ -324,11 +324,23 @@ alias techwiki='vi ~/Documents/wiki/tech/index.mkd'
 alias tw='vi ~/Documents/wiki/tech/index.mkd'
 alias twiki='vi ~/Documents/wiki/tech/index.mkd'
 alias wikitaglist="wikitags"
+alias taglist="wikitags"
 # alias wikitags="grep --color=always -r -e '^:\S*:$' ~/Documents/wiki/*.mkd ~/Documents/wiki/diary/*.mkd | cut -d '/' -f 6,7  "
 
+vip() {
+  vim - -u /home/alec/.dotfiles/pager.vimrc
+  # the following breaks
+  #> /tmp/vip-input.txt
+  #vim /tmp/vip-input.txt -u /home/alec/.dotfiles/pager.vimrc
+}
+ackvim() {
+  # @TODO when $2 contains wildcard like `202*` the `*` shell expansion does not occur -- why? Fix this.
+  ack --no-color $1 $2 > /tmp/ackvim.txt
+  vim -u /home/alec/.dotfiles/pager.vimrc /tmp/ackvim.txt
+}
+alias ackv='ackvim'
 #alias dreams='dreams.py | less -i'
 #alias dreams="dreams.py | vim - -c 'set nomodifiable' -c 'set ft=markdown' '+norm Go'"
-# @TODO perhaps source a vimrc via `-u` that makes `q` run `:q!`
 #alias dreams="dreams.py | view -"
 #alias dreams="dreams.py | vim - -c 'set ft=none' '+norm Go'"
 alias dreams="diary.py Dreams | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=vimwiki' '+norm Go'"
@@ -340,19 +352,42 @@ alias challenges="diary.py Struggles | vim - -u /home/alec/.dotfiles/pager.vimrc
 alias reflections="diary.py Reflections | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=vimwiki' '+norm Go'"
 alias accomplishments="diary.py Accomplishments | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=vimwiki' '+norm Go'"
 alias forgiveness="diary.py Forgiveness | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=vimwiki' '+norm Go'"
+
+occurrence() {
+  tr -s '[:space:]' '[\n*]' | grep -v "^\s*$" | sort | uniq -c | sort -bnr
+}
+alias occurrences='occurrence'
+themes() {
+  occurrence | grep -vE '#|to|and|the|\d' | less
+}
 wikitags() {
-  wikitaglist.sh $1 > /tmp/wiki-tag-reports/list-of-tags.txt
-                  vim /tmp/wiki-tag-reports/list-of-tags.txt -u /home/alec/.dotfiles/pager.vimrc
+  wikitaglist.sh $1 > /tmp/diary-reports/list-of-tags.txt
+                  vim /tmp/diary-reports/list-of-tags.txt -u /home/alec/.dotfiles/pager.vimrc
   #wikitaglist.sh $1 | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set nomodifiable' 'set readonly'
+}
+sleepat() {
+  [ ! -d "/tmp/diary-reports" ] && mkdir /tmp/diary-reports
+  grep -En '^- sleep|^- \[X\] Sleep|^- \[ \] sleep' ~/Documents/wiki/diary/2021*\
+    | sed 's/- sleep//g'\
+    | sed 's/- \[x\] sleep//g'\
+    | sed 's/- \[ \] sleep//g'\
+    | sed 's|/home/alec/Documents/wiki/diary/||g'\
+    > /tmp/diary-reports/sleep-at
+    vi /tmp/diary-reports/sleep-at  -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=vimwiki' '+norm Go'
 }
 techtag() {
   techtag.py $1 | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=vimwiki' '+norm Go'
 }
 tagshow() {
-  tagshow.py $1 > /tmp/wiki-tag-reports/$1.mkd; vi /tmp/wiki-tag-reports/$1.mkd -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=vimwiki' '+norm Go'
-              #vi /tmp/wiki-tag-reports/$1.mkd
- #tagshow.py $1 > /tmp/wiki-tag-reports/$1.mkd; vi /tmp/wiki-tag-reports/$1.mkd
+  [ ! -d "/tmp/diary-reports" ] && mkdir /tmp/diary-reports
+  tagshow.py $1 > /tmp/diary-reports/$1.mkd; vi /tmp/diary-reports/$1.mkd -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=vimwiki' '+norm Go'
+              #vi /tmp/diary-reports/$1.mkd
+ #tagshow.py $1 > /tmp/diary-reports/$1.mkd; vi /tmp/diary-reports/$1.mkd
  #tagshow.py $1 | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=vimwiki' '+norm Go'
+}
+tgsho() {
+  tagshow.py $1 > /tmp/diary-reports/$1.mkd;
+               vi /tmp/diary-reports/$1.mkd
 }
 oldtagshow() {
   tagshow.py $1 | vim - -u /home/alec/.dotfiles/pager.vimrc -c 'set ft=vimwiki' '+norm Go'
