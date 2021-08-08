@@ -76,9 +76,6 @@ export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
 # export MANPATH="/usr/local/man:$MANPATH"
 
-# If using oh-my-zsh turn off the damn update check!
-DISABLE_AUTO_UPDATE="true"
-source $ZSH/oh-my-zsh.sh
 # source ~/bin/tmuxinator.zsh
 # source /usr/local/src/drush/drush.complete.sh
 # source ~/bin/wp-completion.bash
@@ -209,6 +206,7 @@ alias ga='git add .'
 alias gc='git commit'
 alias gcm='git commit -m'
 alias gcp='git cherry-pick'
+alias gd='git diff'
 alias gdc='git diff --cached'
 alias gf='git fetch'
 alias gs='git status'
@@ -313,6 +311,7 @@ alias tim='timew summary :id'
 alias showtime="sho 'timew summary :id'"
 alias timlog='timew :id summary 2020-01-01 - tomorrow'
 alias tnt='tasknote'
+alias projects="task projects | grep -v 'clitools\|none\|.*project.*tasks'"
 
 alias dot='cd ~/.dotfiles && ls'
 alias bin='cd ~/code/bin && ls'
@@ -327,6 +326,7 @@ alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E 
 alias bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|to\ full|percentage"'
 
 alias bank="pass -c money/bank"
+alias workbank="pass -c work/bank"
 
 alias sysins='vi ~/code/bin/system-install.sh'
 
@@ -411,7 +411,6 @@ alias tags="tagshow"
 alias showtag="tagshow"
 alias bol="tagshow BoL"
 
-alias vip="vit +personal"
 alias vitp="vit +personal"
 
 #alias fb='fb-messenger-cli'
@@ -480,9 +479,6 @@ switch-term-color() {
     printf '\033Ptmux;\033\033]50;%s\007\033\\' "$arg"
   fi
 }
-
-
-
 ### End of Konsole colorscheme switching ###
 
 fnd() {
