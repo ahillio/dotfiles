@@ -2,6 +2,17 @@
 #set -x
 # end debug
 
+# Ctrl+s freezes terminal (requiring Ctrl+q to un-freeze)
+# so disable the terminal scroll lock setting:
+stty -ixon
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -15,36 +26,35 @@ export ZSH=$HOME/.oh-my-zsh
 # ZSH_THEME="miloshadzic"
 # ZSH_THEME="avit"
 # ZSH_THEME="bureau"
-ZSH_THEME="powerlevel9k/powerlevel9k"
-#POWERLEVEL9K_RPROMPT_ON_NEWLINE=false // true/false makes no difference :(
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir newline vcs)
-# @NOTE the difference between "_ON_" and not "_ADD_"
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode status history battery time)
-POWERLEVEL9K_VI_INSERT_MODE_STRING="INSERT"
-POWERLEVEL9K_VI_COMMAND_MODE_STRING="VI-Mode"
-#POWERLEVEL9K_VI_MODE_COMMAND_BACKGROUND='grey35' // doesn't seam to do anything (why?)
-POWERLEVEL9K_BATTERY_CHARGING_FOREGROUND='025'
-POWERLEVEL9K_BATTERY_DISCONNECTED_FOREGROUND="grey"
-POWERLEVEL9K_TIME_BACKGROUND='black'
-POWERLEVEL9K_TIME_FOREGROUND='grey'
-# `vcs` color customization
-POWERLEVEL9K_VCS_CLEAN_FOREGROUND='024'
-POWERLEVEL9K_VCS_CLEAN_BACKGROUND='black'
-POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='yellow'
-POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='black'
-POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='094'
-POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='black'
-# directories
-POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='094'
-POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='black'
-POWERLEVEL9K_DIR_HOME_BACKGROUND='black'
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='black'
-POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='110'
-POWERLEVEL9K_DIR_HOME_FOREGROUND='056'
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='062'
-POWERLEVEL9K_COLOR_SCHEME='dark'
+ZSH_THEME="powerlevel10k/powerlevel10k"
+#ZSH_THEME="powerlevel9k/powerlevel9k"
+#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir newline vcs)
+#POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+#POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode status history battery time)
+#POWERLEVEL9K_VI_INSERT_MODE_STRING="INSERT"
+#POWERLEVEL9K_VI_COMMAND_MODE_STRING="VI-Mode"
+#    #POWERLEVEL9K_VI_MODE_COMMAND_BACKGROUND='grey35' // doesn't seam to do anything (why?)
+#    POWERLEVEL9K_BATTERY_CHARGING_FOREGROUND='025'
+#    POWERLEVEL9K_BATTERY_DISCONNECTED_FOREGROUND="grey"
+#    POWERLEVEL9K_TIME_BACKGROUND='black'
+#    POWERLEVEL9K_TIME_FOREGROUND='grey'
+#    # `vcs` color customization
+#    POWERLEVEL9K_VCS_CLEAN_FOREGROUND='024'
+#    POWERLEVEL9K_VCS_CLEAN_BACKGROUND='black'
+#    POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='yellow'
+#    POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='black'
+#    POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='094'
+#    POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='black'
+#    # directories
+#    POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='094'
+#    POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='black'
+#    POWERLEVEL9K_DIR_HOME_BACKGROUND='black'
+#    POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='black'
+#    POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='110'
+#    POWERLEVEL9K_DIR_HOME_FOREGROUND='056'
+#    POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='062'
+#    POWERLEVEL9K_COLOR_SCHEME='dark'
 
 source $ZSH/oh-my-zsh.sh
 # If using oh-my-zsh turn off the damn update check!
@@ -152,10 +162,6 @@ source ~/.dotfiles/tmuxinator.zsh
 # zle -N zle-line-finish
 # zle -N zle-keymap-select
 # end of cursor mode function
-
-# Ctrl+s freezes terminal (requiring Ctrl+q to un-freeze)
-# so disable the terminal scroll lock setting:
-stty -ixon
 
 # `ls` autocomplete should not give files as options, only directories
 #      (why would I want to `ls some-dir/filename`?
@@ -504,3 +510,8 @@ fnd() {
 # debug
 #set +x
 # end debug
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+bindkey -v
+#typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
